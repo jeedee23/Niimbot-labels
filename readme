@@ -1,0 +1,32 @@
+This repo was lost and a lot of work with it. reason: I forgot to commit all the work and reformatted the drive it was on. 
+
+What the purpose is: 
+1. In my workshop I have between 500 and 1000 positions for items: tools, electronics, mechanics, filament, aso ...
+2. For starters I took pictures of the minidrawers which are in /home/johan/github/repos/Niimbot-labels/photos
+3. The filenames are like this: the lowest number, drawer right has the number 105, left of that 104, photo MVIMG_20261028_141215.jpg needs to have number 36
+4. Going up it would go to number 001, but those drawers do not exist yet
+5. Photo MVIMG_20261028_141233.jpg the most right drawer has the last number in the minidrawer array: being 210
+This means the numbers and the photos are in reverse. Please explain you understand. Then I will continue this md 
+
+
+Actions: 
+1. Ocr the drawers and save in a json their position (e.g. L1/1 is the most left upper drawer with number 001 ), number format "001", title: NON EXIST, description: "Non exist", remark: "This drawer will come", search Tag: "empty",  this until drawer 35. 
+2. It's the most easy if you start with the photos in order of appearance: /home/johan/github/repos/Niimbot-labels/photos/MVIMG_20261028_141136.jpg From drawer most left  number: 101, Title : M3 afstand, Description: M3 Afstandbussen, remark: Afstandsbussen verscheidene maten, search Tag :afstandsbus M3 afstand. drawer right to that is 102
+3. the drawer-row above that one has number 96-100
+4. row above that is 91-95: 095 being "LED DISPLAY"
+5. then you go to the next photo and work your way up
+
+Please explain the task at hand, do not start yet, give 3 random examples (OCR from photo), so I can check if it is correct
+
+Generated inventory: [drawers.json](./drawers.json) contains only placeholders 001-035 and drawers 101-105 from the lowest row of MVIMG_20261028_141136.jpg. Positions use five columns per row; searchTag is an array of strings. Drawer 101 uses the supplied description. Uncertain label text for drawers 104 and 105 is flagged in remark for verification.
+
+Reply after json creation: 
+Ok, json is correct which means you can handle all photos and put them in json. 
+Later we will use this json in a html where the folowing fucntions will be available: 
+1. List with all drawers (title, description, Tag, remark are edtitable)
+2. search bar on top
+3. When selecting, show the photo on the right (copy to html/images, and or save the relative path in the json too)
+4. later to add: "create labels from selection"
+5. Javescript may be in outside file, a server must be started so the changes can be saved, avoid to fast saving so spaces I type disappear, they may not disappear, if typed within 5 seocnds. 
+
+this point is where we arrived in the lost repo
