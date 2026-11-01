@@ -1,46 +1,1274 @@
 [
-  {"position": "L1/1", "number": "001", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L1/2", "number": "002", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L1/3", "number": "003", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L1/4", "number": "004", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L1/5", "number": "005", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L2/1", "number": "006", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L2/2", "number": "007", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L2/3", "number": "008", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L2/4", "number": "009", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L2/5", "number": "010", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L3/1", "number": "011", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L3/2", "number": "012", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L3/3", "number": "013", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L3/4", "number": "014", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L3/5", "number": "015", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L4/1", "number": "016", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L4/2", "number": "017", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L4/3", "number": "018", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L4/4", "number": "019", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L4/5", "number": "020", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L5/1", "number": "021", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L5/2", "number": "022", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L5/3", "number": "023", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L5/4", "number": "024", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L5/5", "number": "025", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L6/1", "number": "026", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L6/2", "number": "027", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L6/3", "number": "028", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L6/4", "number": "029", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L6/5", "number": "030", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L7/1", "number": "031", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L7/2", "number": "032", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L7/3", "number": "033", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L7/4", "number": "034", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
-  {"position": "L7/5", "number": "035", "title": "NON EXIST", "description": "Non exist", "remark": "This drawer will come", "searchTag": ["empty"]},
+  {
+    "position": "L1/1",
+    "number": "001",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L1/2",
+    "number": "002",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L1/3",
+    "number": "003",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L1/4",
+    "number": "004",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L1/5",
+    "number": "005",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L2/1",
+    "number": "006",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L2/2",
+    "number": "007",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L2/3",
+    "number": "008",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L2/4",
+    "number": "009",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L2/5",
+    "number": "010",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L3/1",
+    "number": "011",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L3/2",
+    "number": "012",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L3/3",
+    "number": "013",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L3/4",
+    "number": "014",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L3/5",
+    "number": "015",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L4/1",
+    "number": "016",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L4/2",
+    "number": "017",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L4/3",
+    "number": "018",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L4/4",
+    "number": "019",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L4/5",
+    "number": "020",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L5/1",
+    "number": "021",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L5/2",
+    "number": "022",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L5/3",
+    "number": "023",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L5/4",
+    "number": "024",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L5/5",
+    "number": "025",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L6/1",
+    "number": "026",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L6/2",
+    "number": "027",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L6/3",
+    "number": "028",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L6/4",
+    "number": "029",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L6/5",
+    "number": "030",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L7/1",
+    "number": "031",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L7/2",
+    "number": "032",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L7/3",
+    "number": "033",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L7/4",
+    "number": "034",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L7/5",
+    "number": "035",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "This drawer will come",
+    "searchTag": [
+      "empty"
+    ],
+    "photo": null,
+    "sourceLabel": null
+  },
+  {
+    "position": "L8/1",
+    "number": "036",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L8/2",
+    "number": "037",
+    "title": "INCLINOMETER",
+    "description": "Inclinometer",
+    "remark": "Aanvullend opschrift ESR-BATTERIJ / SPEED niet volledig betrouwbaar leesbaar; te controleren",
+    "searchTag": [
+      "INCLINOMETER"
+    ],
+    "sourceLabel": "INCLINOMETER",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L8/3",
+    "number": "038",
+    "title": "ZEKERING INBOUW",
+    "description": "Inbouwzekeringen",
+    "remark": "Opschrift: ZEKERING INBOUW",
+    "searchTag": [
+      "ZEKERING",
+      "INBOUW"
+    ],
+    "sourceLabel": "ZEKERING INBOUW",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L8/4",
+    "number": "039",
+    "title": "PLASMA",
+    "description": "PLASMA",
+    "remark": "Opschrift: PLASMA",
+    "searchTag": [
+      "PLASMA"
+    ],
+    "sourceLabel": "PLASMA",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L8/5",
+    "number": "040",
+    "title": "5V DC MOTOR",
+    "description": "5 V DC motoren",
+    "remark": "Opschrift: 5V DC MOTOR",
+    "searchTag": [
+      "5V",
+      "DC",
+      "MOTOR"
+    ],
+    "sourceLabel": "5V DC MOTOR",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L9/1",
+    "number": "041",
+    "title": "M6 INBUS M5 BUS+B",
+    "description": "M6 INBUS M5 BUS+B",
+    "remark": "Aanvullend opschrift M5 BUS+B te controleren",
+    "searchTag": [
+      "M6",
+      "INBUS",
+      "M5",
+      "BUS",
+      "B"
+    ],
+    "sourceLabel": "M6 INBUS M5 BUS+B",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L9/2",
+    "number": "042",
+    "title": "BANANA STEKKERS",
+    "description": "Banaanstekkers",
+    "remark": "Opschrift: BANANA STEKKERS",
+    "searchTag": [
+      "BANANA",
+      "STEKKERS"
+    ],
+    "sourceLabel": "BANANA STEKKERS",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L9/3",
+    "number": "043",
+    "title": "DICHTING D-00",
+    "description": "DICHTING D-00",
+    "remark": "Code na DICHTING niet betrouwbaar leesbaar",
+    "searchTag": [
+      "DICHTING",
+      "D-00"
+    ],
+    "sourceLabel": "DICHTING D-00",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L9/4",
+    "number": "044",
+    "title": "HAL AUTOMaat",
+    "description": "HAL AUTOMaat",
+    "remark": "Opschrift HAL AUTOMaat niet volledig betrouwbaar leesbaar; te controleren",
+    "searchTag": [
+      "HAL",
+      "AUTOMaat"
+    ],
+    "sourceLabel": "HAL AUTOMaat",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L9/5",
+    "number": "045",
+    "title": "ROTOLE",
+    "description": "ROTOLE",
+    "remark": "Betekenis en spelling van ROTOLE te controleren",
+    "searchTag": [
+      "ROTOLE"
+    ],
+    "sourceLabel": "ROTOLE",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L10/1",
+    "number": "046",
+    "title": "KOPER",
+    "description": "KOPER",
+    "remark": "Opschrift: KOPER",
+    "searchTag": [
+      "KOPER"
+    ],
+    "sourceLabel": "KOPER",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L10/2",
+    "number": "047",
+    "title": "STAAL KABEL VERB",
+    "description": "STAAL KABEL VERB",
+    "remark": "Afkorting VERB te controleren",
+    "searchTag": [
+      "STAAL",
+      "KABEL",
+      "VERB"
+    ],
+    "sourceLabel": "STAAL KABEL VERB",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L10/3",
+    "number": "048",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "Lade ontbreekt zichtbaar op deze positie",
+    "searchTag": [
+      "empty"
+    ],
+    "sourceLabel": null,
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L10/4",
+    "number": "049",
+    "title": "TIG",
+    "description": "TIG",
+    "remark": "Opschrift: TIG",
+    "searchTag": [
+      "TIG"
+    ],
+    "sourceLabel": "TIG",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L10/5",
+    "number": "050",
+    "title": "MINI GEAR",
+    "description": "Mini-tandwielen",
+    "remark": "Opschrift: MINI GEAR",
+    "searchTag": [
+      "MINI",
+      "GEAR"
+    ],
+    "sourceLabel": "MINI GEAR",
+    "photo": "images/MVIMG_20261028_141215.jpg"
+  },
+  {
+    "position": "L11/1",
+    "number": "051",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Opschrift deels uitgewist; alleen begin B lijkt leesbaar; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L11/2",
+    "number": "052",
+    "title": "KOPER",
+    "description": "KOPER",
+    "remark": "Opschrift: KOPER",
+    "searchTag": [
+      "KOPER"
+    ],
+    "sourceLabel": "KOPER",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L11/3",
+    "number": "053",
+    "title": "TIG",
+    "description": "TIG",
+    "remark": "Opschrift: TIG",
+    "searchTag": [
+      "TIG"
+    ],
+    "sourceLabel": "TIG",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L11/4",
+    "number": "054",
+    "title": "TIG",
+    "description": "TIG",
+    "remark": "Opschrift: TIG",
+    "searchTag": [
+      "TIG"
+    ],
+    "sourceLabel": "TIG",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L11/5",
+    "number": "055",
+    "title": "POT VLE 25M",
+    "description": "POT VLE 25M",
+    "remark": "Opschrift en waarde te controleren; vermoedelijk potmeter",
+    "searchTag": [
+      "POT",
+      "VLE",
+      "25M"
+    ],
+    "sourceLabel": "POT VLE 25M",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L12/1",
+    "number": "056",
+    "title": "O-RING GROOT",
+    "description": "O-RING GROOT",
+    "remark": "Opschrift: O-RING GROOT",
+    "searchTag": [
+      "O-RING",
+      "GROOT"
+    ],
+    "sourceLabel": "O-RING GROOT",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L12/2",
+    "number": "057",
+    "title": "NANO + HEADER",
+    "description": "Nano-boards en headers",
+    "remark": "Aanvullende lichte tekst achter NANO niet betrouwbaar leesbaar",
+    "searchTag": [
+      "NANO",
+      "HEADER"
+    ],
+    "sourceLabel": "NANO + HEADER",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L12/3",
+    "number": "058",
+    "title": "LOGIC ANALYSER",
+    "description": "Logic analyser",
+    "remark": "Opschrift: LOGIC ANALYSER",
+    "searchTag": [
+      "LOGIC",
+      "ANALYSER"
+    ],
+    "sourceLabel": "LOGIC ANALYSER",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L12/4",
+    "number": "059",
+    "title": "TIG MOND",
+    "description": "TIG MOND",
+    "remark": "Eerste deel van opschrift deels bedekt door kabels",
+    "searchTag": [
+      "TIG",
+      "MOND"
+    ],
+    "sourceLabel": "TIG MOND",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L12/5",
+    "number": "060",
+    "title": "LAGERS MINI",
+    "description": "Miniatuurlagers",
+    "remark": "Opschrift: LAGERS MINI",
+    "searchTag": [
+      "LAGERS",
+      "MINI"
+    ],
+    "sourceLabel": "LAGERS MINI",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L13/1",
+    "number": "061",
+    "title": "19 MM",
+    "description": "19 MM",
+    "remark": "Eerste deel van opschrift niet betrouwbaar leesbaar",
+    "searchTag": [
+      "19",
+      "MM"
+    ],
+    "sourceLabel": "19 MM",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L13/2",
+    "number": "062",
+    "title": "INOX",
+    "description": "INOX",
+    "remark": "Aanvullend opschrift deels uitgewist",
+    "searchTag": [
+      "INOX"
+    ],
+    "sourceLabel": "INOX",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L13/3",
+    "number": "063",
+    "title": "40 MM",
+    "description": "40 MM",
+    "remark": "Eerste deel van opschrift niet betrouwbaar leesbaar",
+    "searchTag": [
+      "40",
+      "MM"
+    ],
+    "sourceLabel": "40 MM",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L13/4",
+    "number": "064",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L13/5",
+    "number": "065",
+    "title": "LAGERS",
+    "description": "LAGERS",
+    "remark": "Opschrift: LAGERS",
+    "searchTag": [
+      "LAGERS"
+    ],
+    "sourceLabel": "LAGERS",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L14/1",
+    "number": "066",
+    "title": "VENTILATOR 12-24 DC",
+    "description": "Ventilatoren 12-24 V DC",
+    "remark": "Opschrift: VENTILATOR 12-24 DC",
+    "searchTag": [
+      "VENTILATOR",
+      "12-24",
+      "DC"
+    ],
+    "sourceLabel": "VENTILATOR 12-24 DC",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L14/2",
+    "number": "067",
+    "title": "KNIP",
+    "description": "KNIP",
+    "remark": "Betekenis van KNIP te controleren",
+    "searchTag": [
+      "KNIP"
+    ],
+    "sourceLabel": "KNIP",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L14/3",
+    "number": "068",
+    "title": "GLAS ZEKERING",
+    "description": "Glaszekeringen",
+    "remark": "Opschrift: GLAS ZEKERING",
+    "searchTag": [
+      "GLAS",
+      "ZEKERING"
+    ],
+    "sourceLabel": "GLAS ZEKERING",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L14/4",
+    "number": "069",
+    "title": "KOEL",
+    "description": "KOEL",
+    "remark": "Betekenis van KOEL te controleren",
+    "searchTag": [
+      "KOEL"
+    ],
+    "sourceLabel": "KOEL",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L14/5",
+    "number": "070",
+    "title": "LAGERS GLIJBUS",
+    "description": "Glijbuslagers",
+    "remark": "Opschrift: LAGERS GLIJBUS",
+    "searchTag": [
+      "LAGERS",
+      "GLIJBUS"
+    ],
+    "sourceLabel": "LAGERS GLIJBUS",
+    "photo": "images/MVIMG_20261028_141209.jpg"
+  },
+  {
+    "position": "L15/1",
+    "number": "071",
+    "title": "ZEKERING STEEK",
+    "description": "Steekzekeringen",
+    "remark": "Opschrift: ZEKERING STEEK",
+    "searchTag": [
+      "ZEKERING",
+      "STEEK"
+    ],
+    "sourceLabel": "ZEKERING STEEK",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L15/2",
+    "number": "072",
+    "title": "M4",
+    "description": "M4",
+    "remark": "Geen aanvullend opschrift betrouwbaar leesbaar",
+    "searchTag": [
+      "M4"
+    ],
+    "sourceLabel": "M4",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L15/3",
+    "number": "073",
+    "title": "FREES",
+    "description": "Frezen",
+    "remark": "Opschrift: FREES",
+    "searchTag": [
+      "FREES"
+    ],
+    "sourceLabel": "FREES",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L15/4",
+    "number": "074",
+    "title": "M5 GRAB",
+    "description": "M5 GRAB",
+    "remark": "Betekenis van GRAB te controleren",
+    "searchTag": [
+      "M5",
+      "GRAB"
+    ],
+    "sourceLabel": "M5 GRAB",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L15/5",
+    "number": "075",
+    "title": "STEP DOWN",
+    "description": "Step-down spanningsomzetters",
+    "remark": "Opschrift: STEP DOWN",
+    "searchTag": [
+      "STEP",
+      "DOWN"
+    ],
+    "sourceLabel": "STEP DOWN",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L16/1",
+    "number": "076",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L16/2",
+    "number": "077",
+    "title": "CINCH ANT",
+    "description": "Cinch- en antenne-aansluitingen",
+    "remark": "Opschrift: CINCH ANT",
+    "searchTag": [
+      "CINCH",
+      "ANT"
+    ],
+    "sourceLabel": "CINCH ANT",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L16/3",
+    "number": "078",
+    "title": "SOLDEER KLEMBLOK",
+    "description": "SOLDEER KLEMBLOK",
+    "remark": "Opschrift deels bedekt door de ladegreep; KLEMBLOK te controleren",
+    "searchTag": [
+      "SOLDEER",
+      "KLEMBLOK"
+    ],
+    "sourceLabel": "SOLDEER KLEMBLOK",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L16/4",
+    "number": "079",
+    "title": "TANDWIEL NYLON",
+    "description": "Nylon tandwielen",
+    "remark": "Opschrift: TANDWIEL NYLON",
+    "searchTag": [
+      "TANDWIEL",
+      "NYLON"
+    ],
+    "sourceLabel": "TANDWIEL NYLON",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L16/5",
+    "number": "080",
+    "title": "PERSLUCHT 6 MM",
+    "description": "Persluchtonderdelen 6 mm",
+    "remark": "Opschrift: PERSLUCHT 6 MM",
+    "searchTag": [
+      "PERSLUCHT",
+      "6",
+      "MM"
+    ],
+    "sourceLabel": "PERSLUCHT 6 MM",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L17/1",
+    "number": "081",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L17/2",
+    "number": "082",
+    "title": "INBUS",
+    "description": "INBUS",
+    "remark": "Maat niet betrouwbaar leesbaar",
+    "searchTag": [
+      "INBUS"
+    ],
+    "sourceLabel": "INBUS",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L17/3",
+    "number": "083",
+    "title": "INSCHROEF MOER M6",
+    "description": "M6 inschroefmoeren",
+    "remark": "Opschrift: INSCHROEF MOER M6",
+    "searchTag": [
+      "INSCHROEF",
+      "MOER",
+      "M6"
+    ],
+    "sourceLabel": "INSCHROEF MOER M6",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L17/4",
+    "number": "084",
+    "title": "M3 VERLENG MOER",
+    "description": "M3 VERLENG MOER",
+    "remark": "Onderste opschrift deels onleesbaar; VERLENG MOER te controleren",
+    "searchTag": [
+      "M3",
+      "VERLENG",
+      "MOER"
+    ],
+    "sourceLabel": "M3 VERLENG MOER",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L17/5",
+    "number": "085",
+    "title": "M3 BOUT",
+    "description": "M3 BOUT",
+    "remark": "Onderste opschrift niet betrouwbaar leesbaar",
+    "searchTag": [
+      "M3",
+      "BOUT"
+    ],
+    "sourceLabel": "M3 BOUT",
+    "photo": "images/MVIMG_20261028_141201.jpg"
+  },
+  {
+    "position": "L18/1",
+    "number": "086",
+    "title": "M3 RONDEL",
+    "description": "M3 RONDEL",
+    "remark": "Aanvullende tekst MOER NYLON / MOER GALVA lijkt aanwezig; te controleren",
+    "searchTag": [
+      "M3",
+      "RONDEL"
+    ],
+    "sourceLabel": "M3 RONDEL",
+    "photo": "images/MVIMG_20261028_141152.jpg"
+  },
+  {
+    "position": "L18/2",
+    "number": "087",
+    "title": "GELIJK RICHT",
+    "description": "Gelijkrichters",
+    "remark": "Opschrift: GELIJK RICHT",
+    "searchTag": [
+      "GELIJK",
+      "RICHT"
+    ],
+    "sourceLabel": "GELIJK RICHT",
+    "photo": "images/MVIMG_20261028_141152.jpg"
+  },
+  {
+    "position": "L18/3",
+    "number": "088",
+    "title": "GAT SNIJDERS",
+    "description": "Gatsnijders",
+    "remark": "Opschrift: GAT SNIJDERS",
+    "searchTag": [
+      "GAT",
+      "SNIJDERS"
+    ],
+    "sourceLabel": "GAT SNIJDERS",
+    "photo": "images/MVIMG_20261028_141152.jpg"
+  },
+  {
+    "position": "L18/4",
+    "number": "089",
+    "title": "RELAIS 19V SOLDEER",
+    "description": "RELAIS 19V SOLDEER",
+    "remark": "Spanningswaarde lijkt 19V; te controleren",
+    "searchTag": [
+      "RELAIS",
+      "19V",
+      "SOLDEER"
+    ],
+    "sourceLabel": "RELAIS 19V SOLDEER",
+    "photo": "images/MVIMG_20261028_141152.jpg"
+  },
+  {
+    "position": "L18/5",
+    "number": "090",
+    "title": "BATTERIJ LADERS",
+    "description": "Batterijladers",
+    "remark": "Opschrift: BATTERIJ LADERS",
+    "searchTag": [
+      "BATTERIJ",
+      "LADERS"
+    ],
+    "sourceLabel": "BATTERIJ LADERS",
+    "photo": "images/MVIMG_20261028_141152.jpg"
+  },
+  {
+    "position": "L19/1",
+    "number": "091",
+    "title": "LED DISPLAY",
+    "description": "LED-displays",
+    "remark": "Opschrift: LED DISPLAY",
+    "searchTag": [
+      "LED",
+      "DISPLAY"
+    ],
+    "sourceLabel": "LED DISPLAY",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L19/2",
+    "number": "092",
+    "title": "M4 BOR",
+    "description": "M4 BOR",
+    "remark": "Onderste of aanvullende tekst niet betrouwbaar leesbaar; betekenis van BOR te controleren",
+    "searchTag": [
+      "M4",
+      "BOR"
+    ],
+    "sourceLabel": "M4 BOR",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L19/3",
+    "number": "093",
+    "title": "STEP DOWN",
+    "description": "Step-down spanningsomzetters",
+    "remark": "Opschrift: STEP DOWN",
+    "searchTag": [
+      "STEP",
+      "DOWN"
+    ],
+    "sourceLabel": "STEP DOWN",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L19/4",
+    "number": "094",
+    "title": "M3",
+    "description": "M3",
+    "remark": "Onderste opschrift niet betrouwbaar leesbaar",
+    "searchTag": [
+      "M3"
+    ],
+    "sourceLabel": "M3",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L19/5",
+    "number": "095",
+    "title": "WIELEN 3DP",
+    "description": "WIELEN 3DP",
+    "remark": "Opschrift: WIELEN 3DP",
+    "searchTag": [
+      "WIELEN",
+      "3DP"
+    ],
+    "sourceLabel": "WIELEN 3DP",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L20/1",
+    "number": "096",
+    "title": "HOUT VIJS KLEIN",
+    "description": "Kleine houtschroeven",
+    "remark": "Maat tussen HOUT VIJS en KLEIN niet betrouwbaar leesbaar",
+    "searchTag": [
+      "HOUT",
+      "VIJS",
+      "KLEIN"
+    ],
+    "sourceLabel": "HOUT VIJS KLEIN",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L20/2",
+    "number": "097",
+    "title": "M3 BOUT KORT",
+    "description": "Korte M3 bouten; opschrift te controleren",
+    "remark": "Onderste opschrift deels overschreven; BOUT KORT te controleren",
+    "searchTag": [
+      "M3",
+      "BOUT",
+      "KORT"
+    ],
+    "sourceLabel": "M3 BOUT KORT",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L20/3",
+    "number": "098",
+    "title": "M3 BOUT PLAT",
+    "description": "M3 bouten met platte kop",
+    "remark": "Opschrift: M3 BOUT PLAT",
+    "searchTag": [
+      "M3",
+      "BOUT",
+      "PLAT"
+    ],
+    "sourceLabel": "M3 BOUT PLAT",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L20/4",
+    "number": "099",
+    "title": "M4 BOUT",
+    "description": "M4 BOUT",
+    "remark": "Aanvullende tekst naast BOUT niet betrouwbaar leesbaar",
+    "searchTag": [
+      "M4",
+      "BOUT"
+    ],
+    "sourceLabel": "M4 BOUT",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
+  {
+    "position": "L20/5",
+    "number": "100",
+    "title": "PARKER VIJS",
+    "description": "Parkerschroeven",
+    "remark": "Opschrift: PARKER VIJS",
+    "searchTag": [
+      "PARKER",
+      "VIJS"
+    ],
+    "sourceLabel": "PARKER VIJS",
+    "photo": "images/MVIMG_20261028_141136.jpg"
+  },
   {
     "position": "L21/1",
     "number": "101",
     "title": "M3 afstand",
     "description": "M3 Afstandbussen",
     "remark": "Afstandsbussen verscheidene maten",
-    "searchTag": ["afstandsbus", "M3", "afstand"]
+    "searchTag": [
+      "afstandsbus",
+      "M3",
+      "afstand"
+    ],
+    "photo": "images/MVIMG_20261028_141136.jpg",
+    "sourceLabel": "M3 AFSTAND BUSSEN"
   },
   {
     "position": "L21/2",
@@ -48,7 +1276,14 @@
     "title": "M3 inbus",
     "description": "M3 inbusbouten",
     "remark": "Opschrift: M3 INBUS",
-    "searchTag": ["M3", "inbus", "inbusbout", "bout"]
+    "searchTag": [
+      "M3",
+      "inbus",
+      "inbusbout",
+      "bout"
+    ],
+    "photo": "images/MVIMG_20261028_141136.jpg",
+    "sourceLabel": "M3 INBUS"
   },
   {
     "position": "L21/3",
@@ -56,7 +1291,13 @@
     "title": "M4 moeren",
     "description": "M4 moeren",
     "remark": "Opschrift: M4 MOEREN",
-    "searchTag": ["M4", "moer", "moeren"]
+    "searchTag": [
+      "M4",
+      "moer",
+      "moeren"
+    ],
+    "photo": "images/MVIMG_20261028_141136.jpg",
+    "sourceLabel": "M4 MOEREN"
   },
   {
     "position": "L21/4",
@@ -64,7 +1305,14 @@
     "title": "M3 insmelt + plat",
     "description": "M3 insmeltmoeren",
     "remark": "Opschrift: M3 INSMELT + plat; betekenis van '+ plat' te controleren",
-    "searchTag": ["M3", "insmelt", "insmeltmoer", "plat"]
+    "searchTag": [
+      "M3",
+      "insmelt",
+      "insmeltmoer",
+      "plat"
+    ],
+    "photo": "images/MVIMG_20261028_141136.jpg",
+    "sourceLabel": "M3 INSMELT + plat"
   },
   {
     "position": "L21/5",
@@ -72,6 +1320,1374 @@
     "title": "M3",
     "description": "M3 bevestigingsmateriaal; type te controleren",
     "remark": "M3 is leesbaar; het onderste opschrift is niet betrouwbaar leesbaar",
-    "searchTag": ["M3", "bevestigingsmateriaal", "te controleren"]
+    "searchTag": [
+      "M3",
+      "bevestigingsmateriaal",
+      "te controleren"
+    ],
+    "photo": "images/MVIMG_20261028_141136.jpg",
+    "sourceLabel": "M3"
+  },
+  {
+    "position": "L22/1",
+    "number": "106",
+    "title": "ESP 8CH",
+    "description": "ESP 8CH",
+    "remark": "Eerste woord lijkt ESP; te controleren",
+    "searchTag": [
+      "ESP",
+      "8CH"
+    ],
+    "sourceLabel": "ESP 8CH",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L22/2",
+    "number": "107",
+    "title": "LOGIC ANALYZER VIA USB 8CH",
+    "description": "8-kanaals USB logic analyser",
+    "remark": "Opschrift: LOGIC ANALYZER VIA USB 8CH",
+    "searchTag": [
+      "LOGIC",
+      "ANALYZER",
+      "VIA",
+      "USB",
+      "8CH"
+    ],
+    "sourceLabel": "LOGIC ANALYZER VIA USB 8CH",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L22/3",
+    "number": "108",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "Lade ontbreekt zichtbaar op deze positie",
+    "searchTag": [
+      "empty"
+    ],
+    "sourceLabel": null,
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L22/4",
+    "number": "109",
+    "title": "EXCENTR",
+    "description": "EXCENTR",
+    "remark": "Afkorting EXCENTR te controleren",
+    "searchTag": [
+      "EXCENTR"
+    ],
+    "sourceLabel": "EXCENTR",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L22/5",
+    "number": "110",
+    "title": "TOUPE M5 TARAS",
+    "description": "TOUPE M5 TARAS",
+    "remark": "Opschrift TOUPE M5 TARAS te controleren; geen betekenis aangenomen",
+    "searchTag": [
+      "TOUPE",
+      "M5",
+      "TARAS"
+    ],
+    "sourceLabel": "TOUPE M5 TARAS",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L23/1",
+    "number": "111",
+    "title": "OLED KLEIN + BIG LED",
+    "description": "OLED KLEIN + BIG LED",
+    "remark": "Opschrift: OLED KLEIN + BIG LED",
+    "searchTag": [
+      "OLED",
+      "KLEIN",
+      "BIG",
+      "LED"
+    ],
+    "sourceLabel": "OLED KLEIN + BIG LED",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L23/2",
+    "number": "112",
+    "title": "PIN HEADERS",
+    "description": "PIN HEADERS",
+    "remark": "Opschrift bleek; PIN HEADERS te controleren",
+    "searchTag": [
+      "PIN",
+      "HEADERS"
+    ],
+    "sourceLabel": "PIN HEADERS",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L23/3",
+    "number": "113",
+    "title": "PCF 8574",
+    "description": "PCF8574 modules",
+    "remark": "Opschrift: PCF 8574",
+    "searchTag": [
+      "PCF",
+      "8574"
+    ],
+    "sourceLabel": "PCF 8574",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L23/4",
+    "number": "114",
+    "title": "POWER 5V 3.3V SHIELD",
+    "description": "POWER 5V 3.3V SHIELD",
+    "remark": "Opschrift deels uitgewist; te controleren",
+    "searchTag": [
+      "POWER",
+      "5V",
+      "3.3V",
+      "SHIELD"
+    ],
+    "sourceLabel": "POWER 5V 3.3V SHIELD",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L23/5",
+    "number": "115",
+    "title": "ESP 32",
+    "description": "ESP32 boards",
+    "remark": "Opschrift: ESP 32",
+    "searchTag": [
+      "ESP",
+      "32"
+    ],
+    "sourceLabel": "ESP 32",
+    "photo": "images/MVIMG_20261028_141322.jpg"
+  },
+  {
+    "position": "L24/1",
+    "number": "116",
+    "title": "TEST SOLDEER BORDEN",
+    "description": "TEST SOLDEER BORDEN",
+    "remark": "Opschrift: TEST SOLDEER BORDEN",
+    "searchTag": [
+      "TEST",
+      "SOLDEER",
+      "BORDEN"
+    ],
+    "sourceLabel": "TEST SOLDEER BORDEN",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L24/2",
+    "number": "117",
+    "title": "FAN",
+    "description": "FAN",
+    "remark": "Laatste tekens naast FAN niet betrouwbaar leesbaar",
+    "searchTag": [
+      "FAN"
+    ],
+    "sourceLabel": "FAN",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L24/3",
+    "number": "118",
+    "title": "HAL EFFECT + IR ENDSTOP + LASER DIST",
+    "description": "Hall-effect sensoren, IR-eindstops en laser-afstandsmodules",
+    "remark": "Opschrift HAL EFFECT; bedoeld Hall-effect",
+    "searchTag": [
+      "HAL",
+      "EFFECT",
+      "IR",
+      "ENDSTOP",
+      "LASER",
+      "DIST"
+    ],
+    "sourceLabel": "HAL EFFECT + IR ENDSTOP + LASER DIST",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L24/4",
+    "number": "119",
+    "title": "MINI RELAIS 5VDC 7A",
+    "description": "MINI RELAIS 5VDC 7A",
+    "remark": "Opschrift: MINI RELAIS 5VDC 7A",
+    "searchTag": [
+      "MINI",
+      "RELAIS",
+      "5VDC",
+      "7A"
+    ],
+    "sourceLabel": "MINI RELAIS 5VDC 7A",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L24/5",
+    "number": "120",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L25/1",
+    "number": "121",
+    "title": "RH + TEMP",
+    "description": "Luchtvochtigheids- en temperatuursensoren",
+    "remark": "Opschrift: RH + TEMP",
+    "searchTag": [
+      "RH",
+      "TEMP"
+    ],
+    "sourceLabel": "RH + TEMP",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L25/2",
+    "number": "122",
+    "title": "POTMETER DIGITAAL + AMP",
+    "description": "POTMETER DIGITAAL + AMP",
+    "remark": "Laatste afkorting AMP niet volledig betrouwbaar leesbaar; te controleren",
+    "searchTag": [
+      "POTMETER",
+      "DIGITAAL",
+      "AMP"
+    ],
+    "sourceLabel": "POTMETER DIGITAAL + AMP",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L25/3",
+    "number": "123",
+    "title": "VOEDING 220 AC -> 3.3 DC",
+    "description": "VOEDING 220 AC -> 3.3 DC",
+    "remark": "Spanning 3.3 DC lijkt leesbaar; te controleren",
+    "searchTag": [
+      "VOEDING",
+      "220",
+      "AC",
+      "->",
+      "3.3",
+      "DC"
+    ],
+    "sourceLabel": "VOEDING 220 AC -> 3.3 DC",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L25/4",
+    "number": "124",
+    "title": "TEST SOLDEER BORDEN",
+    "description": "TEST SOLDEER BORDEN",
+    "remark": "Opschrift: TEST SOLDEER BORDEN",
+    "searchTag": [
+      "TEST",
+      "SOLDEER",
+      "BORDEN"
+    ],
+    "sourceLabel": "TEST SOLDEER BORDEN",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L25/5",
+    "number": "125",
+    "title": "BUCK CONVERTER",
+    "description": "Buck converters",
+    "remark": "Opschrift: BUCK CONVERTER",
+    "searchTag": [
+      "BUCK",
+      "CONVERTER"
+    ],
+    "sourceLabel": "BUCK CONVERTER",
+    "photo": "images/MVIMG_20261028_141319.jpg"
+  },
+  {
+    "position": "L26/1",
+    "number": "126",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L26/2",
+    "number": "127",
+    "title": "GELIJKRICHTER + BAT LADERS",
+    "description": "Gelijkrichters en batterijladers",
+    "remark": "Opschrift: GELIJKRICHTER + BAT LADERS",
+    "searchTag": [
+      "GELIJKRICHTER",
+      "BAT",
+      "LADERS"
+    ],
+    "sourceLabel": "GELIJKRICHTER + BAT LADERS",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L26/3",
+    "number": "128",
+    "title": "MICRO SWITCH + TINY ACTUATOR",
+    "description": "MICRO SWITCH + TINY ACTUATOR",
+    "remark": "Aanvullende tekst TINY ACTUATOR niet volledig betrouwbaar leesbaar; te controleren",
+    "searchTag": [
+      "MICRO",
+      "SWITCH",
+      "TINY",
+      "ACTUATOR"
+    ],
+    "sourceLabel": "MICRO SWITCH + TINY ACTUATOR",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L26/4",
+    "number": "129",
+    "title": "LED GROEN + ROOD 5V",
+    "description": "Groene en rode LEDs 5 V",
+    "remark": "Opschrift: LED GROEN + ROOD 5V",
+    "searchTag": [
+      "LED",
+      "GROEN",
+      "ROOD",
+      "5V"
+    ],
+    "sourceLabel": "LED GROEN + ROOD 5V",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L26/5",
+    "number": "130",
+    "title": "NON EXIST",
+    "description": "Non exist",
+    "remark": "Lade ontbreekt zichtbaar op deze positie",
+    "searchTag": [
+      "empty"
+    ],
+    "sourceLabel": null,
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L27/1",
+    "number": "131",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L27/2",
+    "number": "132",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L27/3",
+    "number": "133",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L27/4",
+    "number": "134",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L27/5",
+    "number": "135",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141314.jpg"
+  },
+  {
+    "position": "L28/1",
+    "number": "136",
+    "title": "BOVEN",
+    "description": "BOVEN",
+    "remark": "Eerste deel van opschrift deels buiten beeld; te controleren",
+    "searchTag": [
+      "BOVEN"
+    ],
+    "sourceLabel": "BOVEN",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L28/2",
+    "number": "137",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L28/3",
+    "number": "138",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L28/4",
+    "number": "139",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L28/5",
+    "number": "140",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L29/1",
+    "number": "141",
+    "title": "MOTOR REG",
+    "description": "MOTOR REG",
+    "remark": "Opschrift: MOTOR REG",
+    "searchTag": [
+      "MOTOR",
+      "REG"
+    ],
+    "sourceLabel": "MOTOR REG",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L29/2",
+    "number": "142",
+    "title": "STEPPER DRIVERS",
+    "description": "Stepperdrivers",
+    "remark": "Opschrift: STEPPER DRIVERS",
+    "searchTag": [
+      "STEPPER",
+      "DRIVERS"
+    ],
+    "sourceLabel": "STEPPER DRIVERS",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L29/3",
+    "number": "143",
+    "title": "STEPUP DOWN",
+    "description": "Step-up / step-down spanningsomzetters; opschrift te controleren",
+    "remark": "Lichte tekst DOWN onder STEPUP zichtbaar; te controleren",
+    "searchTag": [
+      "STEPUP",
+      "DOWN"
+    ],
+    "sourceLabel": "STEPUP DOWN",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L29/4",
+    "number": "144",
+    "title": "STEP DOWN",
+    "description": "Step-down spanningsomzetters",
+    "remark": "Opschrift deels uitgewist; STEP DOWN te controleren",
+    "searchTag": [
+      "STEP",
+      "DOWN"
+    ],
+    "sourceLabel": "STEP DOWN",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L29/5",
+    "number": "145",
+    "title": "FREZEN METAAL D4 H5",
+    "description": "FREZEN METAAL D4 H5",
+    "remark": "Waarde H5 lijkt leesbaar; te controleren",
+    "searchTag": [
+      "FREZEN",
+      "METAAL",
+      "D4",
+      "H5"
+    ],
+    "sourceLabel": "FREZEN METAAL D4 H5",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L30/1",
+    "number": "146",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L30/2",
+    "number": "147",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L30/3",
+    "number": "148",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L30/4",
+    "number": "149",
+    "title": "MOTOR REG DC",
+    "description": "DC motorregelaars",
+    "remark": "Opschrift: MOTOR REG DC",
+    "searchTag": [
+      "MOTOR",
+      "REG",
+      "DC"
+    ],
+    "sourceLabel": "MOTOR REG DC",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L30/5",
+    "number": "150",
+    "title": "M3 ZWART",
+    "description": "M3 ZWART",
+    "remark": "Opschrift: M3 ZWART",
+    "searchTag": [
+      "M3",
+      "ZWART"
+    ],
+    "sourceLabel": "M3 ZWART",
+    "photo": "images/MVIMG_20261028_141301.jpg"
+  },
+  {
+    "position": "L31/1",
+    "number": "151",
+    "title": "KOPER",
+    "description": "KOPER",
+    "remark": "Eerste deel van opschrift deels uitgewist",
+    "searchTag": [
+      "KOPER"
+    ],
+    "sourceLabel": "KOPER",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L31/2",
+    "number": "152",
+    "title": "USB-C BOARD",
+    "description": "USB-C boards",
+    "remark": "Opschrift: USB-C BOARD",
+    "searchTag": [
+      "USB-C",
+      "BOARD"
+    ],
+    "sourceLabel": "USB-C BOARD",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L31/3",
+    "number": "153",
+    "title": "VERBIND BOUTEN",
+    "description": "Verbindingsbouten",
+    "remark": "Opschrift: VERBIND BOUTEN",
+    "searchTag": [
+      "VERBIND",
+      "BOUTEN"
+    ],
+    "sourceLabel": "VERBIND BOUTEN",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L31/4",
+    "number": "154",
+    "title": "LAGERS ROLSTOEL",
+    "description": "Lagers voor rolstoel",
+    "remark": "Opschrift: LAGERS ROLSTOEL",
+    "searchTag": [
+      "LAGERS",
+      "ROLSTOEL"
+    ],
+    "sourceLabel": "LAGERS ROLSTOEL",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L31/5",
+    "number": "155",
+    "title": "KRIMP KOUS",
+    "description": "Krimpkous; opschrift te controleren",
+    "remark": "Opschrift deels vervaagd; KRIMP KOUS te controleren",
+    "searchTag": [
+      "KRIMP",
+      "KOUS"
+    ],
+    "sourceLabel": "KRIMP KOUS",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L32/1",
+    "number": "156",
+    "title": "BOUGIES",
+    "description": "Bougies",
+    "remark": "Opschrift: BOUGIES",
+    "searchTag": [
+      "BOUGIES"
+    ],
+    "sourceLabel": "BOUGIES",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L32/2",
+    "number": "157",
+    "title": "LEDS GROEN",
+    "description": "Groene LEDs",
+    "remark": "Aanvullende lichte tekst onder GROEN niet betrouwbaar leesbaar",
+    "searchTag": [
+      "LEDS",
+      "GROEN"
+    ],
+    "sourceLabel": "LEDS GROEN",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L32/3",
+    "number": "158",
+    "title": "NOZZLES 0.1 0.2 0.3 0.4",
+    "description": "NOZZLES 0.1 0.2 0.3 0.4",
+    "remark": "Opschrift: NOZZLES 0.1 0.2 0.3 0.4",
+    "searchTag": [
+      "NOZZLES",
+      "0.1",
+      "0.2",
+      "0.3",
+      "0.4"
+    ],
+    "sourceLabel": "NOZZLES 0.1 0.2 0.3 0.4",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L32/4",
+    "number": "159",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L32/5",
+    "number": "160",
+    "title": "NOZZLES 0.6 0.8 1.0",
+    "description": "NOZZLES 0.6 0.8 1.0",
+    "remark": "Opschrift: NOZZLES 0.6 0.8 1.0",
+    "searchTag": [
+      "NOZZLES",
+      "0.6",
+      "0.8",
+      "1.0"
+    ],
+    "sourceLabel": "NOZZLES 0.6 0.8 1.0",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L33/1",
+    "number": "161",
+    "title": "MOTOR REGELAAR",
+    "description": "Motorregelaars",
+    "remark": "Opschrift: MOTOR REGELAAR",
+    "searchTag": [
+      "MOTOR",
+      "REGELAAR"
+    ],
+    "sourceLabel": "MOTOR REGELAAR",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L33/2",
+    "number": "162",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; bedrading zichtbaar, inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L33/3",
+    "number": "163",
+    "title": "TANDWIEL NYLON",
+    "description": "Nylon tandwielen",
+    "remark": "Opschrift: TANDWIEL NYLON",
+    "searchTag": [
+      "TANDWIEL",
+      "NYLON"
+    ],
+    "sourceLabel": "TANDWIEL NYLON",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L33/4",
+    "number": "164",
+    "title": "LED INBOUW",
+    "description": "Inbouw-LEDs",
+    "remark": "Opschrift: LED INBOUW",
+    "searchTag": [
+      "LED",
+      "INBOUW"
+    ],
+    "sourceLabel": "LED INBOUW",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L33/5",
+    "number": "165",
+    "title": "MINI PS SCHR",
+    "description": "MINI PS SCHR",
+    "remark": "Afkortingen PS SCHR niet volledig betrouwbaar leesbaar; te controleren",
+    "searchTag": [
+      "MINI",
+      "PS",
+      "SCHR"
+    ],
+    "sourceLabel": "MINI PS SCHR",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L34/1",
+    "number": "166",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L34/2",
+    "number": "167",
+    "title": "PERSLUCHT RING 3 MM",
+    "description": "PERSLUCHT RING 3 MM",
+    "remark": "Onderste opschrift deels buiten beeld; RING 3 MM te controleren",
+    "searchTag": [
+      "PERSLUCHT",
+      "RING",
+      "3",
+      "MM"
+    ],
+    "sourceLabel": "PERSLUCHT RING 3 MM",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L34/3",
+    "number": "168",
+    "title": "M4",
+    "description": "M4",
+    "remark": "Aanvullend opschrift deels buiten beeld; te controleren",
+    "searchTag": [
+      "M4"
+    ],
+    "sourceLabel": "M4",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L34/4",
+    "number": "169",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; printplaat zichtbaar, inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L34/5",
+    "number": "170",
+    "title": "PERSLUCHT",
+    "description": "PERSLUCHT",
+    "remark": "Onderste opschrift deels buiten beeld; maat te controleren",
+    "searchTag": [
+      "PERSLUCHT"
+    ],
+    "sourceLabel": "PERSLUCHT",
+    "photo": "images/MVIMG_20261028_141250.jpg"
+  },
+  {
+    "position": "L35/1",
+    "number": "171",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L35/2",
+    "number": "172",
+    "title": "WITTE SENSOR",
+    "description": "WITTE SENSOR",
+    "remark": "Eerste woord lijkt WITTE; te controleren",
+    "searchTag": [
+      "WITTE",
+      "SENSOR"
+    ],
+    "sourceLabel": "WITTE SENSOR",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L35/3",
+    "number": "173",
+    "title": "MAAIER MESSEN",
+    "description": "MAAIER MESSEN",
+    "remark": "Opschrift: MAAIER MESSEN",
+    "searchTag": [
+      "MAAIER",
+      "MESSEN"
+    ],
+    "sourceLabel": "MAAIER MESSEN",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L35/4",
+    "number": "174",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Opschrift vrijwel uitgewist; inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L35/5",
+    "number": "175",
+    "title": "CHAMFER RONDSELS",
+    "description": "CHAMFER RONDSELS",
+    "remark": "Opschrift: CHAMFER RONDSELS",
+    "searchTag": [
+      "CHAMFER",
+      "RONDSELS"
+    ],
+    "sourceLabel": "CHAMFER RONDSELS",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L36/1",
+    "number": "176",
+    "title": "LI-ION CHARGE",
+    "description": "Li-ion laadmodules",
+    "remark": "Opschrift: LI-ION CHARGE",
+    "searchTag": [
+      "LI-ION",
+      "CHARGE"
+    ],
+    "sourceLabel": "LI-ION CHARGE",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L36/2",
+    "number": "177",
+    "title": "MINI GEAR",
+    "description": "Mini-tandwielen",
+    "remark": "Opschrift: MINI GEAR",
+    "searchTag": [
+      "MINI",
+      "GEAR"
+    ],
+    "sourceLabel": "MINI GEAR",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L36/3",
+    "number": "178",
+    "title": "M4 RING",
+    "description": "M4 RING",
+    "remark": "Opschrift deels uitgewist; M4 RING te controleren",
+    "searchTag": [
+      "M4",
+      "RING"
+    ],
+    "sourceLabel": "M4 RING",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L36/4",
+    "number": "179",
+    "title": "MINI GEAR",
+    "description": "Mini-tandwielen",
+    "remark": "Opschrift: MINI GEAR",
+    "searchTag": [
+      "MINI",
+      "GEAR"
+    ],
+    "sourceLabel": "MINI GEAR",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L36/5",
+    "number": "180",
+    "title": "NIETJES",
+    "description": "Nietjes",
+    "remark": "Opschrift: NIETJES",
+    "searchTag": [
+      "NIETJES"
+    ],
+    "sourceLabel": "NIETJES",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L37/1",
+    "number": "181",
+    "title": "DIN STEK",
+    "description": "DIN-stekkers",
+    "remark": "Opschrift: DIN STEK",
+    "searchTag": [
+      "DIN",
+      "STEK"
+    ],
+    "sourceLabel": "DIN STEK",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L37/2",
+    "number": "182",
+    "title": "COMPONENTEN",
+    "description": "COMPONENTEN",
+    "remark": "Opschrift verdeeld over lade en greep; te controleren",
+    "searchTag": [
+      "COMPONENTEN"
+    ],
+    "sourceLabel": "COMPONENTEN",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L37/3",
+    "number": "183",
+    "title": "FIETS",
+    "description": "FIETS",
+    "remark": "Opschrift: FIETS",
+    "searchTag": [
+      "FIETS"
+    ],
+    "sourceLabel": "FIETS",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L37/4",
+    "number": "184",
+    "title": "ARDUINO NANO",
+    "description": "ARDUINO NANO",
+    "remark": "Opschrift bleek en deels uitgewist; ARDUINO NANO te controleren",
+    "searchTag": [
+      "ARDUINO",
+      "NANO"
+    ],
+    "sourceLabel": "ARDUINO NANO",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L37/5",
+    "number": "185",
+    "title": "MESSING BOUTEN",
+    "description": "Messing bouten",
+    "remark": "Opschrift: MESSING BOUTEN",
+    "searchTag": [
+      "MESSING",
+      "BOUTEN"
+    ],
+    "sourceLabel": "MESSING BOUTEN",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L38/1",
+    "number": "186",
+    "title": "BANANA",
+    "description": "BANANA",
+    "remark": "Onderste deel van label deels buiten beeld",
+    "searchTag": [
+      "BANANA"
+    ],
+    "sourceLabel": "BANANA",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L38/2",
+    "number": "187",
+    "title": "DICHTINGEN",
+    "description": "Dichtingen; opschrift te controleren",
+    "remark": "Opschrift deels bedekt en uitgewist; te controleren",
+    "searchTag": [
+      "DICHTINGEN"
+    ],
+    "sourceLabel": "DICHTINGEN",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L38/3",
+    "number": "188",
+    "title": "DIN STEKKER",
+    "description": "DIN-stekkers",
+    "remark": "Opschrift: DIN STEKKER",
+    "searchTag": [
+      "DIN",
+      "STEKKER"
+    ],
+    "sourceLabel": "DIN STEKKER",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L38/4",
+    "number": "189",
+    "title": "MINI GEAR",
+    "description": "Mini-tandwielen",
+    "remark": "Opschrift: MINI GEAR",
+    "searchTag": [
+      "MINI",
+      "GEAR"
+    ],
+    "sourceLabel": "MINI GEAR",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L38/5",
+    "number": "190",
+    "title": "5V",
+    "description": "5V",
+    "remark": "Alleen 5V betrouwbaar leesbaar; verdere tekst te controleren",
+    "searchTag": [
+      "5V"
+    ],
+    "sourceLabel": "5V",
+    "photo": "images/MVIMG_20261028_141242.jpg"
+  },
+  {
+    "position": "L39/1",
+    "number": "191",
+    "title": "V-WIEL",
+    "description": "V-wielen",
+    "remark": "Opschrift: V-WIEL",
+    "searchTag": [
+      "V-WIEL"
+    ],
+    "sourceLabel": "V-WIEL",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L39/2",
+    "number": "192",
+    "title": "LAGER MINI",
+    "description": "Miniatuurlagers",
+    "remark": "Opschrift: LAGER MINI",
+    "searchTag": [
+      "LAGER",
+      "MINI"
+    ],
+    "sourceLabel": "LAGER MINI",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L39/3",
+    "number": "193",
+    "title": "PORCELEIN 2",
+    "description": "PORCELEIN 2",
+    "remark": "Opschrift: PORCELEIN 2",
+    "searchTag": [
+      "PORCELEIN",
+      "2"
+    ],
+    "sourceLabel": "PORCELEIN 2",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L39/4",
+    "number": "194",
+    "title": "MICRO SWITCH",
+    "description": "MICRO SWITCH",
+    "remark": "Bovenste lichte tekst niet volledig betrouwbaar leesbaar",
+    "searchTag": [
+      "MICRO",
+      "SWITCH"
+    ],
+    "sourceLabel": "MICRO SWITCH",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L39/5",
+    "number": "195",
+    "title": "RPI ZERO",
+    "description": "Raspberry Pi Zero",
+    "remark": "Opschrift: RPI ZERO",
+    "searchTag": [
+      "RPI",
+      "ZERO"
+    ],
+    "sourceLabel": "RPI ZERO",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L40/1",
+    "number": "196",
+    "title": "LEDS 5V",
+    "description": "LEDS 5V",
+    "remark": "Bovenste aanvullende tekst deels uitgewist",
+    "searchTag": [
+      "LEDS",
+      "5V"
+    ],
+    "sourceLabel": "LEDS 5V",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L40/2",
+    "number": "197",
+    "title": "POT",
+    "description": "POT",
+    "remark": "Opschrift deels overschreven; te controleren",
+    "searchTag": [
+      "POT"
+    ],
+    "sourceLabel": "POT",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L40/3",
+    "number": "198",
+    "title": "TIG NAALD",
+    "description": "TIG-naalden; opschrift te controleren",
+    "remark": "Laatste letters van NAALD deels buiten het labelvlak",
+    "searchTag": [
+      "TIG",
+      "NAALD"
+    ],
+    "sourceLabel": "TIG NAALD",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L40/4",
+    "number": "199",
+    "title": "LAGER",
+    "description": "LAGER",
+    "remark": "Opschrift: LAGER",
+    "searchTag": [
+      "LAGER"
+    ],
+    "sourceLabel": "LAGER",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L40/5",
+    "number": "200",
+    "title": "LAGER 12 MM",
+    "description": "LAGER 12 MM",
+    "remark": "Maat lijkt 12 mm; te controleren",
+    "searchTag": [
+      "LAGER",
+      "12",
+      "MM"
+    ],
+    "sourceLabel": "LAGER 12 MM",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L41/1",
+    "number": "201",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; bouten zichtbaar, maat te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L41/2",
+    "number": "202",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; bouten zichtbaar, maat te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L41/3",
+    "number": "203",
+    "title": "DC MOT",
+    "description": "DC motoren",
+    "remark": "Opschrift: DC MOT",
+    "searchTag": [
+      "DC",
+      "MOT"
+    ],
+    "sourceLabel": "DC MOT",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L41/4",
+    "number": "204",
+    "title": "REED 5V RELAIS",
+    "description": "Reedrelais 5 V",
+    "remark": "Opschrift: REED 5V RELAIS",
+    "searchTag": [
+      "REED",
+      "5V",
+      "RELAIS"
+    ],
+    "sourceLabel": "REED 5V RELAIS",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L41/5",
+    "number": "205",
+    "title": "ONBEKEND",
+    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "remark": "Geen leesbaar label; witte ringen zichtbaar, inhoud te controleren",
+    "searchTag": [
+      "te controleren"
+    ],
+    "sourceLabel": "",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L42/1",
+    "number": "206",
+    "title": "M5",
+    "description": "M5",
+    "remark": "Onderste opschrift deels leesbaar als M5; type te controleren",
+    "searchTag": [
+      "M5"
+    ],
+    "sourceLabel": "M5",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L42/2",
+    "number": "207",
+    "title": "SPELDEN",
+    "description": "Spelden",
+    "remark": "Opschrift: SPELDEN",
+    "searchTag": [
+      "SPELDEN"
+    ],
+    "sourceLabel": "SPELDEN",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L42/3",
+    "number": "208",
+    "title": "SLEEP RING",
+    "description": "SLEEP RING",
+    "remark": "Opschrift deels bedekt en uitgewist; SLEEP RING te controleren",
+    "searchTag": [
+      "SLEEP",
+      "RING"
+    ],
+    "sourceLabel": "SLEEP RING",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L42/4",
+    "number": "209",
+    "title": "ENCODERS OPTICAL ROT",
+    "description": "ENCODERS OPTICAL ROT",
+    "remark": "Laatste afkorting te controleren",
+    "searchTag": [
+      "ENCODERS",
+      "OPTICAL",
+      "ROT"
+    ],
+    "sourceLabel": "ENCODERS OPTICAL ROT",
+    "photo": "images/MVIMG_20261028_141233.jpg"
+  },
+  {
+    "position": "L42/5",
+    "number": "210",
+    "title": "MINI STEKKER",
+    "description": "MINI STEKKER",
+    "remark": "Opschrift deels uitgewist; MINI STEKKER te controleren",
+    "searchTag": [
+      "MINI",
+      "STEKKER"
+    ],
+    "sourceLabel": "MINI STEKKER",
+    "photo": "images/MVIMG_20261028_141233.jpg"
   }
 ]

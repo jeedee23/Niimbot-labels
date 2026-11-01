@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workshop drawers</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">Workshop inventory</p>
+      <h1>Drawers</h1>
+    </div>
+    <div class="actions">
+      <button id="export" type="button" disabled>Export JSON</button>
+      <button id="reload" type="button" disabled>Reload</button>
+      <button id="save" type="button" disabled>Save now</button>
+    </div>
+  </header>
+  <section class="toolbar" aria-label="Search inventory">
+    <label for="search">Search drawers</label>
+    <input id="search" type="search" placeholder="Number, position, title, description, tags or remark" disabled>
+    <span id="count"></span>
+  </section>
+  <p id="status" role="status" aria-live="polite">Loading inventory...</p>
+  <p class="hint">Edits save after 5 seconds without typing in that drawer. Spaces are preserved. Tags are comma-separated. Select a number to view its photo.</p>
+  <main>
+    <section class="inventory" aria-label="Editable drawer list">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Drawer</th><th scope="col">Title</th><th scope="col">Description</th><th scope="col">Tags</th><th scope="col">Remark</th></tr></thead>
+          <tbody id="drawers"></tbody>
+        </table>
+      </div>
+      <p id="empty" hidden>No matching drawers.</p>
+    </section>
+    <aside aria-label="Selected drawer photo">
+      <div class="photo-panel">
+        <p class="eyebrow">Selected drawer</p>
+        <h2 id="selected">Select a drawer</h2>
+        <p id="source-label"></p>
+        <a id="photo-link" target="_blank" rel="noopener" hidden>
+          <img id="photo" alt="" hidden>
+        </a>
+        <p id="photo-message">The source photo will appear here.</p>
+        <p id="photo-name" class="hint"></p>
+        <p class="hint">Photos contain several drawers. Numbering runs left to right, then upward toward lower numbers. Click the photo to open it at full display size.</p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

@@ -18,7 +18,7 @@ Actions:
 
 Please explain the task at hand, do not start yet, give 3 random examples (OCR from photo), so I can check if it is correct
 
-Generated inventory: [drawers.json](./drawers.json) contains only placeholders 001-035 and drawers 101-105 from the lowest row of MVIMG_20261028_141136.jpg. Positions use five columns per row; searchTag is an array of strings. Drawer 101 uses the supplied description. Uncertain label text for drawers 104 and 105 is flagged in remark for verification.
+Generated inventory: [drawers.json](./drawers.json) now contains positions 001-210. The originally approved placeholders 001-035 and drawers 101-105 have been preserved. Positions use five columns per row; searchTag is an array of strings. Drawer 101 uses the supplied description. Uncertain label text is flagged in remark for verification.
 
 Reply after json creation: 
 Ok, json is correct which means you can handle all photos and put them in json. 
@@ -30,3 +30,66 @@ Later we will use this json in a html where the folowing fucntions will be avail
 5. Javescript may be in outside file, a server must be started so the changes can be saved, avoid to fast saving so spaces I type disappear, they may not disappear, if typed within 5 seocnds. 
 
 this point is where we arrived in the lost repo
+
+## Recovered local application
+
+- Requires Node.js 22 or newer. No npm dependencies are needed.
+- Run `npm start` from this repository, then open http://127.0.0.1:8787. Use `PORT=8788 npm start` if the default port is occupied.
+- Run `npm test` for inventory/API tests and `npm run check` for JavaScript syntax checks.
+- The [HTML interface](./html/index.html) lists all 210 drawers with editable title, description, tags and remark. Search covers those fields, drawer numbers and positions. Selecting a number or focusing a field displays the source photo on the right.
+- Photos are visually transcribed from the supplied images, not sent to an external OCR service. Full-resolution originals remain in [photos](./photos); optimized display copies are in [html/images](./html/images). JSON `photo` paths are relative to the HTML directory. `sourceLabel` retains the initial reading and is not changed when editing inventory fields.
+- Edits save after five seconds without typing in the same drawer. Editing another drawer does not postpone an earlier drawer's save. Save now bypasses the delay. Spaces and newlines are stored exactly; tags are comma-separated and spaces in each tag are preserved.
+- The server writes [drawers.json](./drawers.json) atomically. Only the four editable fields can change. Concurrent changes to the same field are rejected with an explicit conflict, not silently overwritten. Edits remain in the browser on failure; use Save now to retry network failures. On a conflict, export your draft, reload, and reconcile the changed fields.
+- Export JSON downloads the current inventory including unsaved edits. Reload asks before discarding drafts. Leaving the page with unsaved edits triggers the browser's warning; drafts are not automatically recovered after closing the browser.
+- Stop the server before externally replacing or regenerating the JSON. Multiple browser tabs are supported through field-level conflict checks, but independent processes directly writing the file do not share the server's write queue.
+- The server binds only to 127.0.0.1 and rejects foreign hosts/origins. It is not a public production backend.
+- Label creation from selected drawers is intentionally deferred.
+
+## Photo numbering and verification remarks
+
+All photos have been processed once for their new rows; overlapping rows are not duplicated.
+
+| Photo suffix | New drawer numbers |
+| --- | --- |
+| 141136 | 091-105 |
+| 141152 | 086-090 |
+| 141201 | 071-085 |
+| 141209 | 051-070 |
+| 141215 | 036-050 |
+| 141233 | 191-210 |
+| 141242 | 171-190 |
+| 141250 | 151-170 |
+| 141301 | 136-150 |
+| 141314 | 126-135 |
+| 141319 | 116-125 |
+| 141322 | 106-115 |
+
+- Numbers increase left to right within each five-drawer row. The second array continues at 106 = L22/1 and ends at 210 = L42/5, as agreed.
+- The original instruction says 095 is LED DISPLAY, but the first photo shows LED DISPLAY in the leftmost column of row 091-095. Following the confirmed numbering, it has been assigned 091; 095 is WIELEN 3DP. Please verify this discrepancy before printing labels.
+- Existing positions with unreadable or absent labels are titled ONBEKEND, with a verification remark. They are not assumed to be empty.
+- Positions 048, 108 and 130 visibly have no drawer installed; these use NON EXIST and retain a photo reference. Positions 001-035 remain the planned placeholders with no photo.
+- Numerous labels are faded, obscured, abbreviated or clipped at photo boundaries. Readable text is retained and uncertain parts are explicitly noted in each record's remark. Check these against the photo before printing labels; no contents or dimensions have been invented for unreadable labels.
+
+## Hosting later
+
+Cloudflare was selected for the future hosted version: static assets plus a Worker API, with JSON in GitHub as the source of truth. D1 is not needed for this single-user inventory. This local implementation uses GET `/api/drawers` and PATCH `/api/drawers/001` (etc.); each patch contains original field values in `base` and new values in `changes`.
+
+Cloudflare deployment is not part of this recovery step. Later setup requires an authenticated write endpoint (for example Cloudflare Access), a repository-scoped GitHub token stored as a Worker secret, GitHub SHA conflict handling, and reading current JSON through the Worker rather than a stale deployed copy. Never put the token in browser JavaScript. Avoid rebuilding the static site for each inventory-only save.
+
+## Autopilot notes
+
+Non-blocking questions and uncertainties are documented here and in drawer remarks rather than interrupting recovery. The user-provided [commit-and-push.ps1](../githubcommitall/ps_scripts/commit-and-push.ps1) was run with a dedicated one-repository workspace and session-local configuration to avoid committing unrelated workspace changes. The script also publishes its own run log in the githubcommitall repository and adds timestamp comments to changed source files.
+
+Validation performed during recovery:
+- 11 automated inventory/API tests cover complete numbering, all 12 photo links, approved records, exact whitespace/newline/tag persistence, restart-readable JSON, invalid input, localhost restrictions, atomic file cleanup and concurrent writes.
+- Browser checks used a disposable inventory copy, not the real data. Search, photo selection and nonexistent-drawer display passed.
+- With a controlled browser clock, no save occurred at 4,999 ms; typing a space reset the timer, and saving occurred at 5,000 ms after that last input. Leading, repeated and trailing spaces and cursor position were preserved.
+- A delayed save response did not overwrite newer typing. The follow-up save preserved newline-containing descriptions and spaces/empty entries in comma-separated tags.
+- A simulated network failure retained drafts and Save now retried successfully. An externally changed title produced HTTP 409, retaining both the other writer's saved value and this browser's unsaved draft; JSON export remained available.
+
+Backup/setup blockers recorded on 2026-11-01:
+- The script's dry run passed, but the actual run stopped in timestamp processing: PowerShell `Get-Item` does not find hidden `.gitignore` on Linux without `-Force`. The backup tool itself has not been changed. Native Git is used to commit this recovery locally, including `.gitignore`, so it will no longer be an uncommitted file on the next script run.
+- GitHub HTTPS push cannot proceed in this session: `gh auth status` reports no logged-in hosts, and Git reports that it cannot obtain a password. An SSH probe was also blocked by a missing trusted GitHub host key; host verification was not bypassed. Remote backup is therefore still pending.
+- The backup script did create a local commit for its own run log in githubcommitall, but that push failed for the same authentication reason.
+- After authenticating locally (for example with `gh auth login` and `gh auth setup-git`), rerun the usual commit-and-push workflow to publish both repositories' pending commits. No credentials have been placed in the application or committed files.
+- The local editor was started and verified at http://127.0.0.1:8787. Browser tests used a separate disposable JSON file, so the recovered inventory retains its original transcriptions.
