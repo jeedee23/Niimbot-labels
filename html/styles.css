@@ -1,3 +1,4 @@
+/* 2026-11-01-21-36-04 */
 :root { color-scheme: light; font: 14px/1.45 system-ui, sans-serif; color: #1d2939; background: #f3f5f7; }
 * { box-sizing: border-box; }
 body { margin: 0; padding: 24px; }
@@ -26,7 +27,7 @@ th { background: #e9eef4; text-align: left; position: sticky; top: 0; z-index: 1
 th, td { padding: 9px; border-bottom: 1px solid #dce2e9; vertical-align: top; }
 th:first-child { width: 85px; }
 td input, td textarea { display: block; width: 100%; min-width: 130px; padding: 7px; border: 1px solid #c8d0db; border-radius: 4px; font: inherit; background: white; color: inherit; }
-td textarea { min-height: 72px; resize: vertical; }
+td textarea { min-height: 32px; resize: vertical; }
 td small { display: block; font-size: .75rem; margin-top: 5px; color: #526071; }
 tr.selected { background: #eaf2ff; }
 tr.dirty .drawer-number { border-color: #ad6800; }
