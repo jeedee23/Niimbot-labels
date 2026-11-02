@@ -2,7 +2,8 @@ const fields = ['title', 'description', 'searchTag', 'remark'];
 const delay = 5000;
 const elements = Object.fromEntries([
   'drawers', 'search', 'count', 'status', 'save', 'reload', 'export', 'empty',
-  'selected', 'source-label', 'photo', 'photo-link', 'photo-message', 'photo-name'
+  'selected', 'source-label', 'photo', 'photo-link', 'photo-message', 'photo-name',
+  'make-label', 'label-status', 'selection-count', 'clear-selection', 'select-visible'
 ].map(id => [id, document.getElementById(id)]));
 const rows = new Map();
 const pending = new Map();
@@ -11,6 +12,57 @@ const inFlight = new Set();
 const failures = new Map();
 let drawers = [];
 let selectedNumber = null;
+let readOnly = false;
+let selectedNumbers = new Set();
+let selectionAnchor = null;
+
+function visibleNumbers() {
+  return drawers.filter(drawer => !rows.get(drawer.number).element.hidden).map(drawer => drawer.number);
+}
+
+function updateSelection() {
+  const visible = visibleNumbers();
+  const visibleSelected = visible.filter(number => selectedNumbers.has(number)).length;
+  const hidden = selectedNumbers.size - visibleSelected;
+  elements['selection-count'].textContent = `${selectedNumbers.size} selected${hidden ? ` (${hidden} hidden)` : ''}`;
+  elements['make-label'].disabled = selectedNumbers.size === 0;
+  elements['clear-selection'].disabled = selectedNumbers.size === 0;
+  elements['select-visible'].disabled = visible.length === 0;
+  elements['select-visible'].checked = visible.length > 0 && visibleSelected === visible.length;
+  elements['select-visible'].indeterminate = visibleSelected > 0 && visibleSelected < visible.length;
+  for (const [number, row] of rows) {
+    const checked = selectedNumbers.has(number);
+    row.checkbox.checked = checked;
+    row.element.classList.toggle('selected', checked);
+    row.element.setAttribute('aria-selected', String(checked));
+  }
+}
+
+function choose(drawer, event, toggle = false) {
+  const result = selectNumbers(selectedNumbers, visibleNumbers(), drawer.number, selectionAnchor, {
+    shiftKey: event.shiftKey, ctrlKey: event.ctrlKey, metaKey: event.metaKey, toggle
+  });
+  selectedNumbers = result.selected;
+  selectionAnchor = result.anchor;
+  updateSelection();
+  select(drawer);
+}
+
+function sizeRow(row) {
+  if (!row || row.element.hidden) return;
+  const inputs = Object.values(row.inputs);
+  const borders = element => {
+    const style = getComputedStyle(element);
+    return parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+  };
+  for (const input of inputs) input.style.height = '0px';
+  const height = Math.max(30 - borders(inputs[0].parentElement), ...inputs.map(input => input.scrollHeight + borders(input)));
+  for (const input of inputs) input.style.height = `${height}px`;
+}
+
+function sizeVisibleRows() {
+  for (const row of rows.values()) sizeRow(row);
+}
 
 function clone(value) {
   return Array.isArray(value) ? [...value] : value;
@@ -26,14 +78,16 @@ function status(message, error = false) {
 }
 
 function updateStatus() {
-  elements.save.disabled = pending.size === 0 || inFlight.size > 0;
+  elements.save.disabled = readOnly || pending.size === 0 || inFlight.size > 0;
   elements.reload.disabled = inFlight.size > 0;
   for (const [number, row] of rows) {
     row.element.classList.toggle('dirty', pending.has(number));
     row.element.classList.toggle('failed', failures.has(number));
     row.status.textContent = failures.has(number) ? 'Save failed' : inFlight.has(number) ? 'Saving...' : pending.has(number) ? 'Unsaved' : '';
   }
-  if (failures.size) {
+  if (readOnly) {
+    status('Hosted preview is read-only. Saving will be enabled after access protection and GitHub storage are configured.');
+  } else if (failures.size) {
     const [number, message] = failures.entries().next().value;
     status(`${number}: ${message} Unsaved edits remain available in Export JSON.`, true);
   } else if (inFlight.size) {
@@ -80,6 +134,7 @@ function edit(drawer, field, value) {
     timers.delete(drawer.number);
   }
   failures.delete(drawer.number);
+  sizeRow(rows.get(drawer.number));
   if (selectedNumber === drawer.number) elements.selected.textContent = `${drawer.number} · ${drawer.position} · ${drawer.title}`;
   updateStatus();
 }
@@ -121,6 +176,7 @@ async function saveDrawer(number) {
       }
     }
     if (current?.size === 0) pending.delete(number);
+    sizeRow(rows.get(number));
     if (selectedNumber === number) elements.selected.textContent = `${number} · ${drawer.position} · ${drawer.title}`;
   } catch (error) {
     failures.set(number, error.message);
@@ -134,9 +190,9 @@ async function saveDrawer(number) {
 }
 
 function select(drawer) {
-  rows.get(selectedNumber)?.element.classList.remove('selected');
+  rows.get(selectedNumber)?.element.classList.remove('active');
   selectedNumber = drawer.number;
-  rows.get(selectedNumber).element.classList.add('selected');
+  rows.get(selectedNumber).element.classList.add('active');
   elements.selected.textContent = `${drawer.number} · ${drawer.position} · ${drawer.title}`;
   elements['source-label'].textContent = drawer.sourceLabel ? `Source label: ${drawer.sourceLabel}` : 'No readable source label.';
   elements['photo-name'].textContent = drawer.photo || '';
@@ -165,6 +221,8 @@ function filter() {
   }
   elements.count.textContent = `${visible} / ${drawers.length} drawers`;
   elements.empty.hidden = visible > 0;
+  sizeVisibleRows();
+  updateSelection();
 }
 
 function render() {
@@ -174,22 +232,44 @@ function render() {
   for (const drawer of drawers) {
     const tr = document.createElement('tr');
     tr.dataset.number = drawer.number;
+    tr.tabIndex = 0;
+    const selectionCell = tr.insertCell();
+    selectionCell.className = 'selection-cell';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.setAttribute('aria-label', `Select drawer ${drawer.number}`);
+    checkbox.addEventListener('click', event => {
+      event.stopPropagation();
+      choose(drawer, event, true);
+    });
+    selectionCell.append(checkbox);
     const cell = tr.insertCell();
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'drawer-number';
-    button.textContent = drawer.number;
-    button.setAttribute('aria-label', `Select drawer ${drawer.number}`);
-    button.addEventListener('click', () => select(drawer));
-    const position = document.createElement('small');
+    cell.className = 'drawer-cell';
+    const number = document.createElement('span');
+    number.className = 'drawer-number';
+    number.textContent = drawer.number;
+    const position = tr.insertCell();
+    position.className = 'position-cell';
     position.textContent = drawer.position;
     const rowStatus = document.createElement('small');
     rowStatus.className = 'row-status';
-    cell.append(button, position, rowStatus);
+    cell.append(number, rowStatus);
+    tr.addEventListener('click', event => {
+      if (event.target instanceof Element && event.target.closest('textarea, input')) return;
+      choose(drawer, event);
+    });
+    tr.addEventListener('focus', () => select(drawer));
+    tr.addEventListener('keydown', event => {
+      if (event.target === tr && (event.key === ' ' || event.key === 'Enter')) {
+        event.preventDefault();
+        choose(drawer, event, event.key === ' ');
+      }
+    });
     const inputs = {};
     for (const field of fields) {
-      const input = document.createElement(field === 'title' || field === 'searchTag' ? 'input' : 'textarea');
-      if (input instanceof HTMLInputElement) input.type = 'text';
+      const input = document.createElement('textarea');
+      input.rows = 1;
+      input.readOnly = readOnly;
       input.value = field === 'searchTag' ? drawer.searchTag.join(',') : drawer[field];
       input.dataset.field = field;
       input.maxLength = 20000;
@@ -199,7 +279,7 @@ function render() {
       inputs[field] = input;
       tr.insertCell().append(input);
     }
-    rows.set(drawer.number, { element: tr, status: rowStatus, inputs });
+    rows.set(drawer.number, { element: tr, status: rowStatus, inputs, checkbox });
     fragment.append(tr);
   }
   elements.drawers.append(fragment);
@@ -210,6 +290,7 @@ function render() {
 async function load() {
   const result = await api('/api/drawers');
   drawers = result.drawers;
+  readOnly = result.readOnly === true;
   render();
   elements.search.disabled = false;
   elements.export.disabled = false;
@@ -217,6 +298,41 @@ async function load() {
 }
 
 elements.search.addEventListener('input', filter);
+elements['clear-selection'].addEventListener('click', () => {
+  selectedNumbers.clear();
+  selectionAnchor = null;
+  updateSelection();
+});
+elements['select-visible'].addEventListener('change', () => {
+  const visible = visibleNumbers();
+  for (const number of visible) {
+    if (elements['select-visible'].checked) selectedNumbers.add(number);
+    else selectedNumbers.delete(number);
+  }
+  selectionAnchor = visible[0] || null;
+  updateSelection();
+});
+function download(content, type, filename) {
+  const url = URL.createObjectURL(new Blob([content], { type }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+elements['make-label'].addEventListener('click', () => {
+  const drawer = drawers.find(item => selectedNumbers.has(item.number));
+  elements['label-status'].hidden = false;
+  try {
+    const svg = createLabelSvg(drawer);
+    download(svg, 'image/svg+xml;charset=utf-8', `label-${drawer.number}.svg`);
+    elements['label-status'].classList.remove('error');
+    elements['label-status'].textContent = `Created label-${drawer.number}.svg: 50 x 30 mm, 1.5 mm margins.${selectedNumbers.size > 1 ? ` Used the first of ${selectedNumbers.size} selected drawers in inventory order; only one SVG is generated for now.` : ''}`;
+  } catch (error) {
+    elements['label-status'].classList.add('error');
+    elements['label-status'].textContent = `Could not create label: ${error.message}`;
+  }
+});
 elements.save.addEventListener('click', () => {
   for (const number of pending.keys()) void saveDrawer(number);
 });
@@ -233,6 +349,7 @@ elements.reload.addEventListener('click', async () => {
     pending.clear();
     failures.clear();
     drawers = result.drawers;
+    readOnly = result.readOnly === true;
     render();
     elements.search.disabled = false;
     elements.export.disabled = false;
@@ -240,19 +357,13 @@ elements.reload.addEventListener('click', async () => {
   } catch (error) {
     status(`Reload failed: ${error.message} Existing edits have been retained.`, true);
     elements.reload.disabled = false;
-    elements.save.disabled = pending.size === 0;
+    elements.save.disabled = readOnly || pending.size === 0;
     elements.search.disabled = drawers.length === 0;
     for (const row of rows.values()) for (const input of Object.values(row.inputs)) input.disabled = false;
   }
 });
 elements.export.addEventListener('click', () => {
-  const blob = new Blob([`${JSON.stringify(drawers, null, 2)}\n`], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'drawers.json';
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  download(`${JSON.stringify(drawers, null, 2)}\n`, 'application/json', 'drawers.json');
 });
 elements.photo.addEventListener('error', () => {
   elements.photo.hidden = true;
@@ -269,9 +380,19 @@ window.addEventListener('beforeunload', event => {
     event.returnValue = '';
   }
 });
+let tableWidth = 0;
+new ResizeObserver(entries => {
+  const width = entries[0].contentRect.width;
+  if (width !== tableWidth) {
+    tableWidth = width;
+    requestAnimationFrame(sizeVisibleRows);
+  }
+}).observe(elements.drawers.closest('table'));
 try {
   await load();
 } catch (error) {
   status(`Could not load inventory: ${error.message} Start the local server and reload the page.`, true);
   elements.reload.disabled = false;
 }
+import { createLabelSvg } from './label.js';
+import { selectNumbers } from './selection.js';

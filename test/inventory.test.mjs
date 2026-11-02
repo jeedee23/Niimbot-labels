@@ -194,7 +194,8 @@ test('localhost API rejects foreign hosts and origins', async t => {
 test('static files and photos are served but repository files are not exposed', async t => {
   const f = await fixture(t);
   for (const [path, type] of [
-    ['/', 'text/html'], ['/app.js', 'text/javascript'], ['/styles.css', 'text/css'],
+    ['/', 'text/html'], ['/app.js', 'text/javascript'], ['/label.js', 'text/javascript'],
+    ['/selection.js', 'text/javascript'], ['/styles.css', 'text/css'],
     ['/images/MVIMG_20261028_141136.jpg', 'image/jpeg']
   ]) {
     const response = await fetch(`${f.url}${path}`);

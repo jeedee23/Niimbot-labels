@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="30mm" viewBox="0 0 50 30">
+  <title>Drawer 101 - M3 afstand</title>
+  <desc>Editable label draft. 50 x 30 mm with 1.5 mm margins. Number, position, title and description; long text is wrapped and truncated with three dots.</desc>
+  <defs>
+    <clipPath id="print-area"><rect x="1.5" y="1.5" width="47" height="27"/></clipPath>
+  </defs>
+  <g id="label" clip-path="url(#print-area)" fill="#000" font-family="DejaVu Sans Mono, monospace">
+    <g id="header">
+      <text id="drawer-number" x="1.5" y="7.5" font-size="6" font-weight="bold">101</text>
+      <text id="drawer-position" x="48.5" y="5.5" text-anchor="end" font-size="3">L21/1</text>
+      <path id="divider" d="M 1.5 9.5 H 48.5" stroke="#000" stroke-width="0.2"/>
+    </g>
+    <text id="drawer-title" font-size="3.3" font-weight="bold">
+      <tspan x="1.5" y="13.3">M3 afstand</tspan>
+    </text>
+    <text id="drawer-description" font-size="2.8">
+      <tspan x="1.5" y="21.5">M3 Afstandbussen</tspan>
+    </text>
+  </g>
+</svg>

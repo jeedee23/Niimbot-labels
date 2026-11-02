@@ -33,17 +33,27 @@ this point is where we arrived in the lost repo
 
 ## Recovered local application
 
-- Requires Node.js 22 or newer. No npm dependencies are needed.
+- Requires Node.js 22 or newer. The local editor needs no npm dependencies. Cloudflare deployment uses the Wrangler development dependency; run `npm ci` to install the locked version.
 - Run `npm start` from this repository, then open http://127.0.0.1:8787. Use `PORT=8788 npm start` if the default port is occupied.
 - Run `npm test` for inventory/API tests and `npm run check` for JavaScript syntax checks.
-- The [HTML interface](./html/index.html) lists all 210 drawers with editable title, description, tags and remark. Search covers those fields, drawer numbers and positions. Selecting a number or focusing a field displays the source photo on the right.
+- The [HTML interface](./html/index.html) lists all 210 drawers with separate number/position columns and editable title, description, tags and remark. Search covers those fields, drawer numbers and positions. Selecting a row or focusing a field displays the source photo on the right; drawer numbers are not buttons.
 - Photos are visually transcribed from the supplied images, not sent to an external OCR service. Full-resolution originals remain in [photos](./photos); optimized display copies are in [html/images](./html/images). JSON `photo` paths are relative to the HTML directory. `sourceLabel` retains the initial reading and is not changed when editing inventory fields.
 - Edits save after five seconds without typing in the same drawer. Editing another drawer does not postpone an earlier drawer's save. Save now bypasses the delay. Spaces and newlines are stored exactly; tags are comma-separated and spaces in each tag are preserved.
 - The server writes [drawers.json](./drawers.json) atomically. Only the four editable fields can change. Concurrent changes to the same field are rejected with an explicit conflict, not silently overwritten. Edits remain in the browser on failure; use Save now to retry network failures. On a conflict, export your draft, reload, and reconcile the changed fields.
 - Export JSON downloads the current inventory including unsaved edits. Reload asks before discarding drafts. Leaving the page with unsaved edits triggers the browser's warning; drafts are not automatically recovered after closing the browser.
 - Stop the server before externally replacing or regenerating the JSON. Multiple browser tabs are supported through field-level conflict checks, but independent processes directly writing the file do not share the server's write queue.
 - The server binds only to 127.0.0.1 and rejects foreign hosts/origins. It is not a public production backend.
-- Label creation from selected drawers is intentionally deferred.
+- Single-SVG label creation is available; multipage PDF output and printing remain deferred.
+
+## Compact list, selection and label draft
+
+- Rows are 30 px high when all fields fit on one line. Every editable field wraps and automatically expands the row and its cells to fit its content, including after editing, filtering or changing the table width. Whitespace-preserving autosave is unchanged.
+- Checkboxes toggle individual drawers. Clicking a number or position selects just that drawer; Ctrl/Cmd-click toggles it, Shift-click selects a range, and Ctrl/Cmd+Shift adds a range. Shift ranges contain only the current search results. Keyboard Space toggles a focused row; Enter selects it. Focusing or editing a text field previews its photo without changing the checkbox selection.
+- The header checkbox selects/deselects visible results; hidden selections remain selected and are counted explicitly. Clear selection clears all checked drawers.
+- **Make label from selection** downloads one SVG for the first selected drawer in inventory order, even if multiple drawers are selected. It uses current field values, including unsaved edits. It does not write to inventory or generate a PDF.
+- Labels are exactly **50 mm wide x 30 mm high**, with a **1.5 mm inset print area**. The draft includes number, position, title (up to two lines) and description (up to three lines), using editable SVG text with named IDs, not converted outlines. Long text ends with `...`; tags and remarks are not printed. Label-only whitespace is normalized for wrapping; stored drawer text is untouched.
+- [label-template.svg](./label-template.svg) is the initial drawer-101 example to adapt in Vectorcraft and return as the next template.
+- Validation: 21 automated tests pass. Browser checks measured exactly 30 px for a single-line row (including at device pixel ratio 1.5), verified all cells expand/shrink together on editing and width changes, exercised checkbox/Shift/Ctrl/keyboard selection, and confirmed one valid 50 x 30 mm SVG download with rendered text inside the 1.5 mm margins. Tests used a disposable inventory copy; original drawer data is unchanged.
 
 ## Photo numbering and verification remarks
 
@@ -70,11 +80,25 @@ All photos have been processed once for their new rows; overlapping rows are not
 - Positions 048, 108 and 130 visibly have no drawer installed; these use NON EXIST and retain a photo reference. Positions 001-035 remain the planned placeholders with no photo.
 - Numerous labels are faded, obscured, abbreviated or clipped at photo boundaries. Readable text is retained and uncertain parts are explicitly noted in each record's remark. Check these against the photo before printing labels; no contents or dimensions have been invented for unreadable labels.
 
-## Hosting later
+## Cloudflare deployment: initial read-only preview
+
+The first hosted deployment serves the interface and optimized photos through Workers static assets, with [worker.mjs](./worker.mjs) serving the bundled inventory at GET `/api/drawers`. It explicitly returns `readOnly: true`; the browser makes fields read-only and disables saving. Search, photo previews, multiselect, JSON export and SVG labels remain available. PATCH requests return an explicit 503 error until secure GitHub persistence is implemented. The local editor remains editable.
+
+- Worker name: `niimbot-labels`; production branch: `main`; repository root is the build root.
+- Install dependencies: `npm ci`.
+- Build command in Cloudflare: `npm run build:cloudflare`.
+- Deploy command: `npm run deploy`.
+- Preview branch deploy command, if offered: `npx wrangler versions upload`.
+- Local Worker preview: `npm run dev:cloudflare`. Ordinary local editing still uses `npm start`.
+- Configuration is in [wrangler.jsonc](./wrangler.jsonc); only [html](./html) is uploaded as public static assets. The repository, full-resolution originals, local server and credentials are not public static files.
+- This initial Worker uses the inventory snapshot from its deployment, not live GitHub reads. Updating the snapshot requires a new deployment until the GitHub API integration is implemented.
+- A `workers.dev` URL is public by default: anyone with the address can view the inventory and display photos. Read-only mode prevents edits, but is not access protection. Configure Cloudflare Access before enabling remote writes.
+
+## Secure hosted saving: next setup phase
 
 Cloudflare was selected for the future hosted version: static assets plus a Worker API, with JSON in GitHub as the source of truth. D1 is not needed for this single-user inventory. This local implementation uses GET `/api/drawers` and PATCH `/api/drawers/001` (etc.); each patch contains original field values in `base` and new values in `changes`.
 
-Cloudflare deployment is not part of this recovery step. Later setup requires an authenticated write endpoint (for example Cloudflare Access), a repository-scoped GitHub token stored as a Worker secret, GitHub SHA conflict handling, and reading current JSON through the Worker rather than a stale deployed copy. Never put the token in browser JavaScript. Avoid rebuilding the static site for each inventory-only save.
+Hosted saving still requires an authenticated write endpoint (for example Cloudflare Access), a repository-scoped GitHub token stored as a Worker secret, GitHub SHA conflict handling, and reading current JSON through the Worker rather than a stale deployed copy. Never put the token in browser JavaScript. Avoid rebuilding the static site for each inventory-only save.
 
 ## Autopilot notes
 

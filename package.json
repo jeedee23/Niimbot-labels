@@ -6,7 +6,13 @@
   "engines": {"node": ">=22"},
   "scripts": {
     "start": "node server.mjs",
+    "dev:cloudflare": "wrangler dev --ip 127.0.0.1",
+    "deploy": "wrangler deploy",
+    "build:cloudflare": "wrangler deploy --dry-run",
     "test": "node --test",
-    "check": "node --check server.mjs && node --check lib/inventory.mjs && node --check html/app.js"
+    "check": "node --check server.mjs && node --check worker.mjs && node --check lib/inventory.mjs && node --check html/app.js && node --check html/label.js && node --check html/selection.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
   }
 }
