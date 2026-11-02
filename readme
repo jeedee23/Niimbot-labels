@@ -80,9 +80,9 @@ All photos have been processed once for their new rows; overlapping rows are not
 - Positions 048, 108 and 130 visibly have no drawer installed; these use NON EXIST and retain a photo reference. Positions 001-035 remain the planned placeholders with no photo.
 - Numerous labels are faded, obscured, abbreviated or clipped at photo boundaries. Readable text is retained and uncertain parts are explicitly noted in each record's remark. Check these against the photo before printing labels; no contents or dimensions have been invented for unreadable labels.
 
-## Cloudflare deployment: initial read-only preview
+## Cloudflare hosted editor
 
-The first hosted deployment serves the interface and optimized photos through Workers static assets, with [worker.mjs](./worker.mjs) serving the bundled inventory at GET `/api/drawers`. It explicitly returns `readOnly: true`; the browser makes fields read-only and disables saving. Search, photo previews, multiselect, JSON export and SVG labels remain available. PATCH requests return an explicit 503 error until secure GitHub persistence is implemented. The local editor remains editable.
+The site is hosted at https://niimbot-labels.johan-351.workers.dev/. The initial deployment was read-only; [worker.mjs](./worker.mjs) now reads current inventory from GitHub and saves edits through GitHub's Contents API. No D1 database is used. The local editor continues to read/write the local JSON file independently.
 
 - Worker name: `niimbot-labels`; production branch: `main`; repository root is the build root.
 - Install dependencies: `npm ci`.
@@ -90,15 +90,22 @@ The first hosted deployment serves the interface and optimized photos through Wo
 - Deploy command: `npm run deploy`.
 - Preview branch deploy command, if offered: `npx wrangler versions upload`.
 - Local Worker preview: `npm run dev:cloudflare`. Ordinary local editing still uses `npm start`.
+- The Worker preview requires a valid Access JWT and GitHub credentials for API calls; it does not bypass authentication in development. Automated tests use generated signing keys and an isolated mock repository.
 - Configuration is in [wrangler.jsonc](./wrangler.jsonc); only [html](./html) is uploaded as public static assets. The repository, full-resolution originals, local server and credentials are not public static files.
-- This initial Worker uses the inventory snapshot from its deployment, not live GitHub reads. Updating the snapshot requires a new deployment until the GitHub API integration is implemented.
-- A `workers.dev` URL is public by default: anyone with the address can view the inventory and display photos. Read-only mode prevents edits, but is not access protection. Configure Cloudflare Access before enabling remote writes.
+- GET `/api/drawers` reads GitHub's current `drawers.json` on `main`, without returning a stale deployed snapshot on failure. PATCH `/api/drawers/101` (etc.) commits only title, description, remark and searchTag changes, preserving exact spaces, Unicode and newlines.
+- All traffic is protected by the Worker Access application `niimbot-labels - Cloudflare Workers`, using the dedicated `niimbot-labels-owner` Allow policy with the owner's exact email. This intentionally requires login even for viewing. Do not disable Access or add broader Allow/Bypass policies when remote editing is enabled.
 
-## Secure hosted saving: next setup phase
+## Hosted authentication and saving configuration
 
-Cloudflare was selected for the future hosted version: static assets plus a Worker API, with JSON in GitHub as the source of truth. D1 is not needed for this single-user inventory. This local implementation uses GET `/api/drawers` and PATCH `/api/drawers/001` (etc.); each patch contains original field values in `base` and new values in `changes`.
+Cloudflare Access protects the static site at the edge. The Worker also verifies the `Cf-Access-Jwt-Assertion` cryptographically with `jose`, checking RS256 signature, issuer, audience, expiration, issued-at and subject, and requiring an authenticated user's email. Fake or expired headers are rejected before accessing GitHub. PATCH requests additionally require the site's exact Origin. Access key rotation is handled through the team's remote JWK set.
 
-Hosted saving still requires an authenticated write endpoint (for example Cloudflare Access), a repository-scoped GitHub token stored as a Worker secret, GitHub SHA conflict handling, and reading current JSON through the Worker rather than a stale deployed copy. Never put the token in browser JavaScript. Avoid rebuilding the static site for each inventory-only save.
+- Runtime secret: `GITHUB_TOKEN`, set in **Worker Settings > Runtime variables and secrets > Production**, not in build variables. Use a fine-grained GitHub token restricted to `jeedee23/Niimbot-labels` with Contents Read and write; renew it before expiration. Never put the value in browser code, Git, screenshots or chat.
+- Public configuration in [wrangler.jsonc](./wrangler.jsonc): `ACCESS_ISSUER`, `ACCESS_AUD`, `GITHUB_REPOSITORY`, `GITHUB_BRANCH`. The Access issuer is `https://meam-mpms.cloudflareaccess.com`; the AUD was verified from the application's Additional settings > AUD tag. These identifiers are not login tokens or secrets.
+- Each patch includes original values in `base` and new values in `changes`. Before writing, the Worker rechecks those values against the latest file and commits using GitHub's file SHA. A SHA race retries at most three times, re-reading and rechecking fields each time. Same-field conflicts return 409 instead of overwriting another writer. GitHub errors are surfaced explicitly; no credentials or upstream error bodies are returned to the browser.
+- Network timeout can leave the outcome uncertain if GitHub completed the write but its response was lost. Export unsaved drafts and reload to check saved values before retrying; a stale base may correctly trigger a conflict.
+- In **Worker Settings > Builds > Build watch paths**, keep Include `*` and add Exclude `drawers.json`. This is a required dashboard setup step before routine editing to prevent each inventory commit from rebuilding the static site. Code/photo changes should still deploy; the Worker always reads live JSON, so inventory changes do not need a deployment.
+- Hosted edits update GitHub, not the local disk. Do not edit a stale local JSON and push over hosted changes. Synchronize Git first, or export/reconcile drafts if the local inventory also has edits.
+- Verification: 37 automated tests pass, covering local save behavior plus valid/missing/forged/expired/wrong-audience Access JWTs, exact text preservation, bounded SHA races, same-field conflicts, provider failures and unchanged static-asset forwarding. The deployment bundle was checked with Wrangler's dry-run. The final real-user save must still be checked in the protected browser after deployment.
 
 ## Autopilot notes
 

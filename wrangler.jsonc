@@ -4,6 +4,12 @@
   "main": "worker.mjs",
   "compatibility_date": "2026-11-02",
   "workers_dev": true,
+  "vars": {
+    "ACCESS_ISSUER": "https://meam-mpms.cloudflareaccess.com",
+    "ACCESS_AUD": "ef87484a8bcb97893ce59d70fa648665c331ed94bf6175cc33aa3e91d4da786d",
+    "GITHUB_REPOSITORY": "jeedee23/Niimbot-labels",
+    "GITHUB_BRANCH": "main"
+  },
   "assets": {
     "directory": "./html",
     "binding": "ASSETS",

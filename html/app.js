@@ -101,6 +101,9 @@ function updateStatus() {
 
 async function api(path, options) {
   const response = await fetch(path, options);
+  if (!response.headers.get('Content-Type')?.includes('application/json')) {
+    throw new Error('The inventory API did not return JSON. Your login may have expired; export unsaved edits before signing in again and reloading.');
+  }
   const body = await response.json();
   if (!response.ok) throw new Error(body.error || `Request failed (${response.status}).`);
   return body;
@@ -391,7 +394,7 @@ new ResizeObserver(entries => {
 try {
   await load();
 } catch (error) {
-  status(`Could not load inventory: ${error.message} Start the local server and reload the page.`, true);
+  status(`Could not load inventory: ${error.message} Check your connection and sign-in, or start the server if using the local editor, then reload.`, true);
   elements.reload.disabled = false;
 }
 import { createLabelSvg } from './label.js';

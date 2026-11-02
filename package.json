@@ -10,7 +10,10 @@
     "deploy": "wrangler deploy",
     "build:cloudflare": "wrangler deploy --dry-run",
     "test": "node --test",
-    "check": "node --check server.mjs && node --check worker.mjs && node --check lib/inventory.mjs && node --check html/app.js && node --check html/label.js && node --check html/selection.js"
+    "check": "node --check server.mjs && node --check worker.mjs && node --check lib/inventory.mjs && node --check lib/inventory-schema.mjs && node --check html/app.js && node --check html/label.js && node --check html/selection.js"
+  },
+  "dependencies": {
+    "jose": "^6.0.0"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
