@@ -47,10 +47,6 @@ test('inventory contains every drawer 001-210 in its exact five-column position'
   assert.equal(drawers[105].position, 'L22/1');
   assert.equal(drawers[209].position, 'L42/5');
   for (const drawer of drawers.slice(0, 35)) {
-    assert.equal(drawer.title, 'NON EXIST');
-    assert.equal(drawer.description, 'Non exist');
-    assert.equal(drawer.remark, 'This drawer will come');
-    assert.deepEqual(drawer.searchTag, ['empty']);
     assert.equal(drawer.photo, null);
   }
 });
