@@ -12,6 +12,10 @@ button:hover:not(:disabled) { background: #e9f1ff; }
 button:disabled { opacity: .5; cursor: default; }
 button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
 #save { background: #1d4ed8; color: white; border-color: #1d4ed8; }
+#editing-dialog { width: min(360px, calc(100% - 32px)); padding: 20px; border: 1px solid #b4bdc9; border-radius: 8px; color: inherit; }
+#editing-dialog::backdrop { background: rgb(0 0 0 / .3); }
+#editing-pin { display: block; width: 100%; margin-top: 4px; padding: 8px; border: 1px solid #b4bdc9; border-radius: 4px; font: inherit; }
+#editing-error { min-height: 1.5em; color: #b42318; }
 .toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .toolbar label { font-weight: 600; }
 #search { flex: 1; min-width: 240px; max-width: 760px; padding: 10px 12px; border: 1px solid #b4bdc9; border-radius: 6px; font: inherit; }

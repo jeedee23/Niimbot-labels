@@ -1,7 +1,10 @@
 const fields = ['title', 'description', 'searchTag', 'remark'];
 const delay = 5000;
+const editingPin = 'A1B2';
+const editingSessionKey = 'niimbot-editing-unlocked';
 const elements = Object.fromEntries([
-  'drawers', 'search', 'count', 'status', 'save', 'reload', 'export', 'empty',
+  'drawers', 'search', 'count', 'status', 'save', 'reload', 'export', 'empty', 'enable-editing',
+  'editing-dialog', 'editing-form', 'editing-pin', 'editing-error', 'cancel-editing',
   'selected', 'source-label', 'photo', 'photo-link', 'photo-message', 'photo-name',
   'make-label', 'label-status', 'selection-count', 'clear-selection', 'select-visible'
 ].map(id => [id, document.getElementById(id)]));
@@ -15,6 +18,18 @@ let selectedNumber = null;
 let readOnly = false;
 let selectedNumbers = new Set();
 let selectionAnchor = null;
+let editingUnlocked = false;
+let editingSessionError = '';
+try {
+  editingUnlocked = sessionStorage.getItem(editingSessionKey) === 'true';
+} catch (error) {
+  console.error('Could not restore editing session:', error);
+  editingSessionError = 'Browser session storage is unavailable. Editing remains locked; allow session storage and try again.';
+}
+
+function canEdit() {
+  return editingUnlocked && !readOnly;
+}
 
 function visibleNumbers() {
   return drawers.filter(drawer => !rows.get(drawer.number).element.hidden).map(drawer => drawer.number);
@@ -78,7 +93,9 @@ function status(message, error = false) {
 }
 
 function updateStatus() {
-  elements.save.disabled = readOnly || pending.size === 0 || inFlight.size > 0;
+  elements.save.disabled = !canEdit() || pending.size === 0 || inFlight.size > 0;
+  elements['enable-editing'].disabled = readOnly || editingUnlocked || drawers.length === 0;
+  elements['enable-editing'].textContent = canEdit() ? 'Editing enabled' : 'Enable editing';
   elements.reload.disabled = inFlight.size > 0;
   for (const [number, row] of rows) {
     row.element.classList.toggle('dirty', pending.has(number));
@@ -87,6 +104,8 @@ function updateStatus() {
   }
   if (readOnly) {
     status('Hosted preview is read-only. Saving will be enabled after access protection and GitHub storage are configured.');
+  } else if (!editingUnlocked) {
+    status(editingSessionError || 'Editing locked. Use Enable editing and enter the PIN to allow changes and saving.', Boolean(editingSessionError));
   } else if (failures.size) {
     const [number, message] = failures.entries().next().value;
     status(`${number}: ${message} Unsaved edits remain available in Export JSON.`, true);
@@ -110,6 +129,7 @@ async function api(path, options) {
 }
 
 function schedule(number) {
+  if (!canEdit()) return;
   clearTimeout(timers.get(number));
   timers.set(number, setTimeout(() => {
     timers.delete(number);
@@ -118,6 +138,10 @@ function schedule(number) {
 }
 
 function edit(drawer, field, value) {
+  if (!canEdit()) {
+    rows.get(drawer.number).inputs[field].value = field === 'searchTag' ? drawer[field].join(',') : drawer[field];
+    return;
+  }
   const changes = pending.get(drawer.number) || new Map();
   const existing = changes.get(field);
   const base = existing ? existing.base : clone(drawer[field]);
@@ -143,7 +167,7 @@ function edit(drawer, field, value) {
 }
 
 async function saveDrawer(number) {
-  if (inFlight.has(number) || !pending.has(number)) return;
+  if (!canEdit() || inFlight.has(number) || !pending.has(number)) return;
   clearTimeout(timers.get(number));
   timers.delete(number);
   const snapshot = new Map([...pending.get(number)].map(([field, change]) => [
@@ -272,7 +296,7 @@ function render() {
     for (const field of fields) {
       const input = document.createElement('textarea');
       input.rows = 1;
-      input.readOnly = readOnly;
+      input.readOnly = !canEdit();
       input.value = field === 'searchTag' ? drawer.searchTag.join(',') : drawer[field];
       input.dataset.field = field;
       input.maxLength = 20000;
@@ -301,6 +325,35 @@ async function load() {
 }
 
 elements.search.addEventListener('input', filter);
+elements['enable-editing'].addEventListener('click', () => {
+  if (readOnly || editingUnlocked || drawers.length === 0) return;
+  elements['editing-pin'].value = '';
+  elements['editing-error'].textContent = '';
+  elements['editing-dialog'].showModal();
+});
+elements['cancel-editing'].addEventListener('click', () => elements['editing-dialog'].close());
+elements['editing-form'].addEventListener('submit', event => {
+  event.preventDefault();
+  if (readOnly || editingUnlocked || drawers.length === 0) return;
+  if (elements['editing-pin'].value !== editingPin) {
+    elements['editing-error'].textContent = 'Incorrect PIN. Editing and saving remain locked.';
+    elements['editing-pin'].select();
+    return;
+  }
+  try {
+    sessionStorage.setItem(editingSessionKey, 'true');
+  } catch (error) {
+    console.error('Could not store editing session:', error);
+    elements['editing-error'].textContent = 'Could not enable editing: browser session storage is unavailable. Allow session storage and try again.';
+    return;
+  }
+  editingUnlocked = true;
+  editingSessionError = '';
+  elements['editing-pin'].value = '';
+  elements['editing-dialog'].close();
+  for (const row of rows.values()) for (const input of Object.values(row.inputs)) input.readOnly = false;
+  updateStatus();
+});
 elements['clear-selection'].addEventListener('click', () => {
   selectedNumbers.clear();
   selectionAnchor = null;
@@ -343,6 +396,7 @@ elements.reload.addEventListener('click', async () => {
   if (pending.size && !confirm('Discard unsaved edits and load the latest inventory? Export JSON first if you need to keep your edits.')) return;
   elements.reload.disabled = true;
   elements.save.disabled = true;
+  elements['enable-editing'].disabled = true;
   elements.search.disabled = true;
   for (const row of rows.values()) for (const input of Object.values(row.inputs)) input.disabled = true;
   try {
@@ -360,7 +414,8 @@ elements.reload.addEventListener('click', async () => {
   } catch (error) {
     status(`Reload failed: ${error.message} Existing edits have been retained.`, true);
     elements.reload.disabled = false;
-    elements.save.disabled = readOnly || pending.size === 0;
+    elements.save.disabled = !canEdit() || pending.size === 0 || inFlight.size > 0;
+    elements['enable-editing'].disabled = readOnly || editingUnlocked || drawers.length === 0;
     elements.search.disabled = drawers.length === 0;
     for (const row of rows.values()) for (const input of Object.values(row.inputs)) input.disabled = false;
   }
