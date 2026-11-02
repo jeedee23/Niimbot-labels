@@ -41,7 +41,7 @@ function fixture() {
   const fetchGitHub = async (url, options) => {
     assert.ok(url.startsWith('https://api.github.com/repos/test-owner/test-repository/contents/drawers.json'));
     assert.equal(options.headers.Authorization, `Bearer ${env.GITHUB_TOKEN}`);
-    assert.equal(options.redirect, 'error');
+    assert.equal(options.redirect, 'manual');
     calls.push({ url, options });
     if (options.method === 'PUT') {
       if (beforePut) {
@@ -247,6 +247,65 @@ test('GitHub read failures are explicit and never return a success-shaped snapsh
     assert.ok(!JSON.stringify(result).includes('do not expose upstream body'));
     assert.ok(!JSON.stringify(result).includes(env.GITHUB_TOKEN));
   }
+});
+
+test('default fetch uses Cloudflare-supported manual redirects', async () => {
+  const originalFetch = globalThis.fetch;
+  let worker;
+  let calls = 0;
+  try {
+    globalThis.fetch = async (url, options) => {
+      calls++;
+      // Workers supports only follow/manual; error mode throws before any HTTP response.
+      if (options.redirect !== 'manual') throw new TypeError('Invalid redirect value.');
+      return Response.json({
+        type: 'file', encoding: 'base64', sha: 'a'.repeat(40),
+        content: Buffer.from(JSON.stringify(inventory)).toString('base64')
+      });
+    };
+    worker = createWorker({ signingKeys });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+  const response = await worker.fetch(new Request(`${origin}/api/drawers`, {
+    headers: { 'Cf-Access-Jwt-Assertion': validToken }
+  }), env);
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).drawers.length, 210);
+  assert.equal(calls, 1);
+});
+
+test('GitHub redirects are rejected without forwarding credentials to the target', async () => {
+  let calls = 0;
+  const worker = createWorker({
+    signingKeys,
+    fetchGitHub: async (url, options) => {
+      calls++;
+      assert.equal(new URL(url).hostname, 'api.github.com');
+      assert.equal(options.redirect, 'manual');
+      return new Response(null, { status: 302, headers: { Location: 'https://other.example' } });
+    }
+  });
+  const response = await worker.fetch(new Request(`${origin}/api/drawers`, {
+    headers: { 'Cf-Access-Jwt-Assertion': validToken }
+  }), env);
+  assert.equal(response.status, 502);
+  assert.match((await response.json()).error, /HTTP 302/);
+  assert.equal(calls, 1);
+});
+
+test('network failure during loading does not incorrectly imply that a save was attempted', async () => {
+  const worker = createWorker({
+    signingKeys,
+    fetchGitHub: async () => { throw new TypeError('Network unavailable'); }
+  });
+  const response = await worker.fetch(new Request(`${origin}/api/drawers`, {
+    headers: { 'Cf-Access-Jwt-Assertion': validToken }
+  }), env);
+  assert.equal(response.status, 502);
+  const result = await response.json();
+  assert.match(result.error, /No save was attempted/);
+  assert.doesNotMatch(result.error, /save may have completed/);
 });
 
 test('invalid GitHub inventory is not overwritten', async () => {

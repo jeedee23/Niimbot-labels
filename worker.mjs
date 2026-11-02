@@ -118,10 +118,14 @@ export function createWorker({ fetchGitHub = fetch, signingKeys } = {}) {
 
   async function githubRequest(url, options) {
     try {
-      return await fetchGitHub(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(15000) });
-    } catch {
-      console.error('GitHub inventory request could not be completed.');
-      throw new InventoryError(502, 'GitHub could not be reached. A timed-out save may have completed; export your draft and reload before retrying.');
+      return await fetchGitHub(url, { ...options, redirect: 'manual', signal: AbortSignal.timeout(15000) });
+    } catch (error) {
+      const failureType = error instanceof Error ? error.name : 'UnknownError';
+      console.error('GitHub inventory request could not be completed:', failureType);
+      const message = options.method === 'PUT'
+        ? 'GitHub could not be reached during saving. A timed-out save may have completed; export your draft and reload before retrying.'
+        : 'GitHub could not be reached while loading the inventory. No save was attempted; retry Reload or check the Worker logs.';
+      throw new InventoryError(502, message);
     }
   }
 
