@@ -18,6 +18,7 @@ let selectedNumber = null;
 let readOnly = false;
 let selectedNumbers = new Set();
 let selectionAnchor = null;
+let makingLabels = false;
 let editingUnlocked = false;
 let editingSessionError = '';
 try {
@@ -40,7 +41,7 @@ function updateSelection() {
   const visibleSelected = visible.filter(number => selectedNumbers.has(number)).length;
   const hidden = selectedNumbers.size - visibleSelected;
   elements['selection-count'].textContent = `${selectedNumbers.size} selected${hidden ? ` (${hidden} hidden)` : ''}`;
-  elements['make-label'].disabled = selectedNumbers.size === 0;
+  elements['make-label'].disabled = makingLabels || selectedNumbers.size === 0;
   elements['clear-selection'].disabled = selectedNumbers.size === 0;
   elements['select-visible'].disabled = visible.length === 0;
   elements['select-visible'].checked = visible.length > 0 && visibleSelected === visible.length;
@@ -376,17 +377,26 @@ function download(content, type, filename) {
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-elements['make-label'].addEventListener('click', () => {
-  const drawer = drawers.find(item => selectedNumbers.has(item.number));
+elements['make-label'].addEventListener('click', async () => {
+  if (makingLabels) return;
+  const selected = drawers.filter(item => selectedNumbers.has(item.number)).map(drawer => ({ ...drawer }));
+  makingLabels = true;
+  updateSelection();
   elements['label-status'].hidden = false;
+  elements['label-status'].classList.remove('error');
+  elements['label-status'].textContent = 'Creating labels.pdf...';
   try {
-    const svg = createLabelSvg(drawer);
-    download(svg, 'image/svg+xml;charset=utf-8', `label-${drawer.number}.svg`);
+    const { createLabelsPdf } = await import('./label-pdf.bundle.js');
+    const pdf = await createLabelsPdf(selected);
+    download(pdf, 'application/pdf', 'labels.pdf');
     elements['label-status'].classList.remove('error');
-    elements['label-status'].textContent = `Created label-${drawer.number}.svg: 50 x 30 mm, 1.5 mm margins.${selectedNumbers.size > 1 ? ` Used the first of ${selectedNumbers.size} selected drawers in inventory order; only one SVG is generated for now.` : ''}`;
+    elements['label-status'].textContent = `Created labels.pdf: ${selected.length} page(s), one 50 x 30 mm label per drawer, in inventory order. Print at Actual size (100%).`;
   } catch (error) {
     elements['label-status'].classList.add('error');
-    elements['label-status'].textContent = `Could not create label: ${error.message}`;
+    elements['label-status'].textContent = `Could not create labels.pdf: ${error.message}`;
+  } finally {
+    makingLabels = false;
+    updateSelection();
   }
 });
 elements.save.addEventListener('click', () => {
@@ -452,5 +462,4 @@ try {
   status(`Could not load inventory: ${error.message} Check your connection and sign-in, or start the server if using the local editor, then reload.`, true);
   elements.reload.disabled = false;
 }
-import { createLabelSvg } from './label.js';
 import { selectNumbers } from './selection.js';

@@ -15,7 +15,7 @@
     </div>
     <div class="actions">
       <button id="enable-editing" type="button" disabled>Enable editing</button>
-      <button id="make-label" type="button" disabled>Make label from selection</button>
+      <button id="make-label" type="button" disabled>Download labels.pdf</button>
       <button id="export" type="button" disabled>Export JSON</button>
       <button id="reload" type="button" disabled>Reload</button>
       <button id="save" type="button" disabled>Save now</button>
@@ -43,7 +43,7 @@
   </section>
   <p id="label-status" role="status" hidden></p>
   <p id="status" role="status" aria-live="polite">Loading inventory...</p>
-  <p class="hint">Editing and saving stay locked until you enter the PIN using Enable editing. Unlock once per tab session, including refreshes. After unlocking, autosave runs after 5 seconds, or use Save now; spaces are preserved. Tags are comma-separated. Check drawers or click a number/position to select. Shift selects a range; Ctrl/Cmd toggles. The label action exports one SVG for the first selected drawer.</p>
+  <p class="hint">Editing and saving stay locked until you enter the PIN using Enable editing. Unlock once per tab session, including refreshes. After unlocking, autosave runs after 5 seconds, or use Save now; spaces are preserved. Tags are comma-separated. Check drawers or click a number/position to select. Shift selects a range; Ctrl/Cmd toggles. Download labels.pdf creates one 50 x 30 mm page per selected drawer, including hidden selections and unsaved edits. Print at Actual size (100%).</p>
   <main>
     <section class="inventory" aria-label="Editable drawer list">
       <div class="table-scroll">

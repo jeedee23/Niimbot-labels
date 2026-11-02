@@ -28,7 +28,7 @@ function wrap(value, columns, maximumLines) {
   return lines;
 }
 
-export function createLabelSvg(drawer) {
+export function labelContent(drawer) {
   if (!drawer || typeof drawer.number !== 'string' || !/^\d{3}$/.test(drawer.number) ||
       typeof drawer.position !== 'string' || !/^L\d+\/[1-5]$/.test(drawer.position) ||
       typeof drawer.title !== 'string' || typeof drawer.description !== 'string') {
@@ -39,28 +39,35 @@ export function createLabelSvg(drawer) {
       throw new Error('Label text contains a character that SVG cannot represent.');
     }
   }
-  const title = wrap(drawer.title, 22, 2);
-  const description = wrap(drawer.description, 27, 3);
-  const spans = (lines, y, step) => lines.map((line, index) => `      <tspan x="1.5" y="${y + index * step}">${xml(line)}</tspan>`).join('\n');
+  return {
+    number: drawer.number,
+    position: drawer.position,
+    title: wrap(drawer.title, 18, 2),
+    description: wrap(drawer.description.toUpperCase(), 27, 2)
+  };
+}
+
+export function createLabelSvg(drawer) {
+  const { title, description } = labelContent(drawer);
+  const spans = (lines, x, y, step) => lines.map((line, index) => `      <tspan x="${x}" y="${y + index * step}">${xml(line)}</tspan>`).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="30mm" viewBox="0 0 50 30">
   <title>Drawer ${xml(drawer.number)} - ${xml(drawer.title)}</title>
-  <desc>Editable label draft. 50 x 30 mm with 1.5 mm margins. Number, position, title and description; long text is wrapped and truncated with three dots.</desc>
+  <desc>50 x 30 mm, white background, Noto Sans Mono, 1.5 mm clipping margin. Long text is wrapped and truncated with three dots.</desc>
   <defs>
     <clipPath id="print-area"><rect x="1.5" y="1.5" width="47" height="27"/></clipPath>
   </defs>
-  <g id="label" clip-path="url(#print-area)" fill="#000" font-family="DejaVu Sans Mono, monospace">
-    <g id="header">
-      <text id="drawer-number" x="1.5" y="7.5" font-size="6" font-weight="bold">${xml(drawer.number)}</text>
-      <text id="drawer-position" x="48.5" y="5.5" text-anchor="end" font-size="3">${xml(drawer.position)}</text>
-      <path id="divider" d="M 1.5 9.5 H 48.5" stroke="#000" stroke-width="0.2"/>
-    </g>
-    <text id="drawer-title" font-size="3.3" font-weight="bold">
-${spans(title, 13.3, 4)}
+  <rect id="background" x="0" y="0" width="50" height="30" fill="#ffffff"/>
+  <g id="label" clip-path="url(#print-area)" fill="#000" font-family="Noto Sans Mono">
+    <rect id="title-border" x="2" y="2" width="46" height="9" fill="none" stroke="#000" stroke-width="0.088194"/>
+    <text id="drawer-title" font-size="4.233333" font-weight="bold" text-anchor="middle">
+${spans(title, 25, 6, 4)}
     </text>
     <text id="drawer-description" font-size="2.8">
-${spans(description, 21.5, 3)}
+${spans(description, 2, 16, 3)}
     </text>
+    <text id="drawer-number" x="2" y="28" font-size="8.466667" font-weight="bold">${xml(drawer.number)}</text>
+    <text id="drawer-position" x="48" y="27" text-anchor="end" font-size="3">${xml(drawer.position)}</text>
   </g>
 </svg>
 `;

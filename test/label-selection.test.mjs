@@ -58,14 +58,18 @@ test('SVG has exact physical dimensions, margin clipping and editable text IDs',
   assert.match(svg, />101<\/text>/);
   assert.match(svg, />L21\/1<\/text>/);
   assert.match(svg, />M3 afstand<\/tspan>/);
-  assert.match(svg, />M3 Afstandbussen<\/tspan>/);
+  assert.match(svg, />M3 AFSTANDBUSSEN<\/tspan>/);
+  assert.match(svg, /font-family="Noto Sans Mono"/);
+  assert.match(svg, /id="background"[^>]*fill="#ffffff"/);
+  assert.match(svg, /id="title-border" x="2" y="2" width="46" height="9"/);
+  assert.match(svg, /<tspan x="25" y="6">/);
   assert.doesNotMatch(svg, /<image|<script|foreignObject/);
 });
 
 test('SVG escapes arbitrary label text instead of interpreting markup', () => {
   const svg = createLabelSvg({ ...drawer, title: '<script> & "test"', description: "A < B & C > D's" });
   assert.match(svg, /&lt;script&gt; &amp; &quot;test&quot;/);
-  assert.match(svg, /A &lt; B &amp; C &gt; D&apos;s/);
+  assert.match(svg, /A &lt; B &amp; C &gt; D&apos;S/);
   assert.doesNotMatch(svg, /<script>/);
 });
 
@@ -74,7 +78,7 @@ test('long words wrap and overflowing text is explicitly truncated to fit the la
   const title = /<text id="drawer-title"[^>]*>([\s\S]*?)<\/text>/.exec(svg)[1];
   const description = /<text id="drawer-description"[^>]*>([\s\S]*?)<\/text>/.exec(svg)[1];
   assert.equal((title.match(/<tspan/g) || []).length, 2);
-  assert.equal((description.match(/<tspan/g) || []).length, 3);
+  assert.equal((description.match(/<tspan/g) || []).length, 2);
   assert.match(title, /\.\.\.<\/tspan>/);
   assert.match(description, /\.\.\.<\/tspan>/);
 });

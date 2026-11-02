@@ -10,6 +10,9 @@ const staticFiles = new Map([
   ['/index.html', ['index.html', 'text/html; charset=utf-8']],
   ['/app.js', ['app.js', 'text/javascript; charset=utf-8']],
   ['/label.js', ['label.js', 'text/javascript; charset=utf-8']],
+  ['/label-pdf.bundle.js', ['label-pdf.bundle.js', 'text/javascript; charset=utf-8']],
+  ['/fonts/NotoSansMono-Regular.ttf', ['fonts/NotoSansMono-Regular.ttf', 'font/ttf']],
+  ['/fonts/NotoSansMono-Bold.ttf', ['fonts/NotoSansMono-Bold.ttf', 'font/ttf']],
   ['/selection.js', ['selection.js', 'text/javascript; charset=utf-8']],
   ['/styles.css', ['styles.css', 'text/css; charset=utf-8']]
 ]);
