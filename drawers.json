@@ -1288,13 +1288,14 @@
   {
     "position": "L21/3",
     "number": "103",
-    "title": "M4 moeren",
-    "description": "M4 moeren",
+    "title": "M4 moeren en rondellen",
+    "description": "M4 moeren en rondsels",
     "remark": "Opschrift: M4 MOEREN",
     "searchTag": [
       "M4",
       "moer",
-      "moeren"
+      "moeren",
+      "rondsel"
     ],
     "photo": "images/MVIMG_20261028_141136.jpg",
     "sourceLabel": "M4 MOEREN"
