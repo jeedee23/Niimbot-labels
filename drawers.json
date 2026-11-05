@@ -1317,13 +1317,13 @@
   {
     "position": "L21/5",
     "number": "105",
-    "title": "M3 HEX 25",
-    "description": "M3 bevestigingsmateriaal; type te controleren",
+    "title": "M3 HEX 2",
+    "description": "M3 Hex b mmouten 20 mm",
     "remark": "M3 is leesbaar; het onderste opschrift is niet betrouwbaar leesbaar",
     "searchTag": [
       "M3",
-      "bevestigingsmateriaal",
-      "te controleren"
+      " hex",
+      " 20 mm"
     ],
     "photo": "images/MVIMG_20261028_141136.jpg",
     "sourceLabel": "M3"
