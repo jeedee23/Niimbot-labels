@@ -192,6 +192,7 @@ test('static files and photos are served but repository files are not exposed', 
   for (const [path, type] of [
     ['/', 'text/html'], ['/app.js', 'text/javascript'], ['/label.js', 'text/javascript'],
     ['/selection.js', 'text/javascript'], ['/styles.css', 'text/css'],
+    ['/search.js', 'text/javascript'],
     ['/label-pdf.bundle.js', 'text/javascript'],
     ['/fonts/NotoSansMono-Regular.ttf', 'font/ttf'], ['/fonts/NotoSansMono-Bold.ttf', 'font/ttf'],
     ['/images/MVIMG_20261028_141136.jpg', 'image/jpeg']
