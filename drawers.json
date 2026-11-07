@@ -2681,12 +2681,13 @@
   {
     "position": "L42/5",
     "number": "210",
-    "title": "Eodynium magneten",
-    "description": "MINI STEKKER",
+    "title": "Neodynium magneten",
+    "description": "Neodynium magneten",
     "remark": "Opschrift deels uitgewist; MINI STEKKER te controleren",
     "searchTag": [
-      "MINI",
-      "STEKKER"
+      "magneten",
+      "neo",
+      "neodynium"
     ],
     "sourceLabel": "MINI STEKKER",
     "photo": "images/MVIMG_20261028_141233.jpg"
