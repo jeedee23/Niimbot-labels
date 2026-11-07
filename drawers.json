@@ -1260,7 +1260,7 @@
     "position": "L21/1",
     "number": "101",
     "title": "M3 afstand",
-    "description": "M3 Afstandbussen",
+    "description": "M3 Afstandbussen zwart",
     "remark": "Afstandsbussen verscheidene maten",
     "searchTag": [
       "afstandsbus",
@@ -1288,13 +1288,14 @@
   {
     "position": "L21/3",
     "number": "103",
-    "title": "M4 moeren",
-    "description": "M4 moeren",
+    "title": "M4 moeren en rondellen",
+    "description": "M4 moeren en rondsels",
     "remark": "Opschrift: M4 MOEREN",
     "searchTag": [
       "M4",
       "moer",
-      "moeren"
+      "moeren",
+      "rondsel"
     ],
     "photo": "images/MVIMG_20261028_141136.jpg",
     "sourceLabel": "M4 MOEREN"
@@ -1317,13 +1318,13 @@
   {
     "position": "L21/5",
     "number": "105",
-    "title": "M3",
-    "description": "M3 bevestigingsmateriaal; type te controleren",
+    "title": "M3 HEX 2",
+    "description": "M3 Hex b mmouten 20 mm",
     "remark": "M3 is leesbaar; het onderste opschrift is niet betrouwbaar leesbaar",
     "searchTag": [
       "M3",
-      "bevestigingsmateriaal",
-      "te controleren"
+      " hex",
+      " 20 mm"
     ],
     "photo": "images/MVIMG_20261028_141136.jpg",
     "sourceLabel": "M3"
