@@ -14,7 +14,7 @@
     "deploy": "wrangler deploy",
     "build:cloudflare": "npm run build:labels && wrangler deploy --dry-run",
     "test": "npm run build:labels && node --test",
-    "check": "node --check server.mjs && node --check worker.mjs && node --check lib/inventory.mjs && node --check lib/inventory-schema.mjs && node --check html/app.js && node --check html/label.js && node --check html/label-pdf.js && node --check html/selection.js"
+    "check": "node --check server.mjs && node --check worker.mjs && node --check lib/inventory.mjs && node --check lib/inventory-schema.mjs && node --check html/app.js && node --check html/label.js && node --check html/label-pdf.js && node --check html/selection.js && node --check html/search.js"
   },
   "dependencies": {
     "jose": "^6.0.0",

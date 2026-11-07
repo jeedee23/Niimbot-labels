@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="30mm" viewBox="0 0 50 30">
+  <title>Drawer 057 - NANO + HEADER</title>
+  <desc>50 x 30 mm. Whole-millimetre text positions and title box, with the original 1.5 mm clipping margin. Font sizes preserve the original point sizes.</desc>
+  <defs>
+    <clipPath id="print-area"><rect x="1.5" y="1.5" width="47" height="27"/></clipPath>
+  </defs>
+  <rect id="background" x="0" y="0" width="50" height="30" fill="#ffffff"/>
+  <g id="label" clip-path="url(#print-area)" fill="#000000">
+    <rect id="title-border" x="2" y="2" width="46" height="9" fill="none" stroke="#000000" stroke-width="0.088194"/>
+    <text id="drawer-title" font-family="Noto Sans Mono" font-size="4.233333" font-weight="bold" text-anchor="middle">
+      <tspan x="25" y="6">NANO + HEADER</tspan>
+    </text>
+    <text id="drawer-description" font-family="Noto Sans Mono" font-size="2.8">
+      <tspan x="2" y="16">NANO-BOARDS EN HEADERS</tspan>
+    </text>
+    <g id="footer" font-family="Noto Sans Mono">
+      <text id="drawer-number" x="2" y="28" font-size="8.466667" font-weight="bold">057</text>
+      <text id="drawer-position" x="48" y="27" font-size="3" text-anchor="end">L12/2</text>
+    </g>
+  </g>
+</svg>

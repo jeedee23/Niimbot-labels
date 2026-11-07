@@ -239,11 +239,10 @@ function select(drawer) {
 }
 
 function filter() {
-  const words = elements.search.value.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  const matchesSearch = createDrawerFilter(elements.search.value);
   let visible = 0;
   for (const drawer of drawers) {
-    const text = [drawer.number, drawer.position, drawer.title, drawer.description, drawer.remark, ...drawer.searchTag].join(' ').toLocaleLowerCase();
-    const matches = words.every(word => text.includes(word));
+    const matches = matchesSearch(drawer);
     rows.get(drawer.number).element.hidden = !matches;
     if (matches) visible++;
   }
@@ -463,3 +462,4 @@ try {
   elements.reload.disabled = false;
 }
 import { selectNumbers } from './selection.js';
+import { createDrawerFilter } from './search.js';

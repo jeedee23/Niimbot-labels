@@ -918,8 +918,8 @@
   {
     "position": "L15/5",
     "number": "075",
-    "title": "STEP DOWN",
-    "description": "Step-down spanningsomzetters",
+    "title": "leeg",
+    "description": "ok, check ",
     "remark": "Opschrift: STEP DOWN",
     "searchTag": [
       "STEP",
@@ -2630,8 +2630,8 @@
   {
     "position": "L42/1",
     "number": "206",
-    "title": "M5",
-    "description": "M5",
+    "title": "M5 moeren BOL",
+    "description": "M bolle moeren",
     "remark": "Onderste opschrift deels leesbaar als M5; type te controleren",
     "searchTag": [
       "M5"
@@ -2681,12 +2681,13 @@
   {
     "position": "L42/5",
     "number": "210",
-    "title": "MINI STEKKER",
-    "description": "MINI STEKKER",
+    "title": "Neodynium magneten",
+    "description": "Neodynium magneten",
     "remark": "Opschrift deels uitgewist; MINI STEKKER te controleren",
     "searchTag": [
-      "MINI",
-      "STEKKER"
+      "magneten",
+      "neo",
+      "neodynium"
     ],
     "sourceLabel": "MINI STEKKER",
     "photo": "images/MVIMG_20261028_141233.jpg"
