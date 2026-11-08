@@ -175,6 +175,10 @@ test('local and Cloudflare builds serve a locally bundled print module', async (
   ]);
   assert.match(server, /\/label-print\.bundle\.js/);
   assert.match(headers, /script-src 'self'/);
+  for (const policy of [server, headers]) {
+    assert.match(policy, /worker-src 'self' blob:/);
+    assert.doesNotMatch(policy, /script-src[^;]*blob:/);
+  }
   assert.match(JSON.parse(manifest).scripts['build:labels'], /label-print\.bundle\.js/);
   for (const id of ['connect-printer', 'print-labels', 'disconnect-printer', 'printer-status']) assert.match(html, new RegExp(`id="${id}"`));
 });
