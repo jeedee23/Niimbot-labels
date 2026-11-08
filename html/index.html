@@ -8,66 +8,70 @@
   <script type="module" src="app.js"></script>
 </head>
 <body>
-  <header>
-    <div>
-      <p class="eyebrow">Workshop inventory</p>
-      <h1>Drawers</h1>
-    </div>
-    <div class="actions">
-      <button id="enable-editing" type="button" disabled>Enable editing</button>
-      <button id="make-label" type="button" disabled>Download labels.pdf</button>
-      <button id="export" type="button" disabled>Export JSON</button>
-      <button id="reload" type="button" disabled>Reload</button>
-      <button id="save" type="button" disabled>Save now</button>
-    </div>
-  </header>
-  <dialog id="editing-dialog" aria-labelledby="editing-heading">
-    <form id="editing-form">
-      <h2 id="editing-heading">Enable editing</h2>
-      <p>Enter the PIN once to allow editing and saving for this tab session.</p>
-      <label for="editing-pin">PIN</label>
-      <input id="editing-pin" type="password" autocomplete="off" autofocus>
-      <p id="editing-error" role="alert"></p>
-      <div class="actions">
-        <button id="cancel-editing" type="button">Cancel</button>
-        <button type="submit">Enable editing</button>
+  <main class="workspace">
+    <section class="inventory" aria-label="Drawer search and editing">
+      <form id="search-form" class="search-toolbar" role="search">
+        <button id="search-button" type="submit" class="primary" disabled>SEARCH</button>
+        <label class="sr-only" for="search">Search drawers</label>
+        <input id="search" type="search" inputmode="none" autocomplete="off" placeholder="Text or range, e.g. 90-96" disabled>
+      </form>
+      <div class="main-actions">
+        <button id="print-labels" type="button" class="primary" disabled>Print selected labels</button>
+        <button id="edit-drawer" type="button" disabled>Edit</button>
+        <button id="clear-selection" type="button" disabled>Clear</button>
+        <button id="fullscreen" type="button" aria-pressed="false">Full screen</button>
+        <details id="more-actions">
+          <summary>More</summary>
+          <div class="more-menu">
+            <button id="make-label" type="button" disabled>Download labels.pdf</button>
+            <button id="export" type="button" disabled>Export JSON</button>
+            <button id="reload" type="button" disabled>Reload</button>
+            <button id="save" type="button" disabled>Save now</button>
+            <button id="connect-printer" type="button">Connect USB printer</button>
+            <button id="disconnect-printer" type="button" disabled>Disconnect printer</button>
+            <p class="hint">USB: Chrome/Edge, Niimbot app closed, 50 x 30 mm gap labels. Printing includes hidden selections and unsaved edits. PDF: print at 100%.</p>
+          </div>
+        </details>
       </div>
-    </form>
-  </dialog>
-  <section class="toolbar" aria-label="Search inventory">
-    <label for="search">Search drawers</label>
-    <input id="search" type="search" placeholder="Text or drawer range, e.g. 90-96 (inclusive)" disabled>
-    <span id="count"></span>
-    <span id="selection-count" aria-live="polite">0 selected</span>
-    <button id="clear-selection" type="button" disabled>Clear selection</button>
-  </section>
-  <p id="label-status" role="status" hidden></p>
-  <p id="status" role="status" aria-live="polite">Loading inventory...</p>
-  <p class="hint">Editing and saving stay locked until you enter the PIN using Enable editing. Unlock once per tab session, including refreshes. After unlocking, autosave runs after 5 seconds, or use Save now; spaces are preserved. Tags are comma-separated. Check drawers or click a number/position to select. Shift selects a range; Ctrl/Cmd toggles. Download labels.pdf creates one 50 x 30 mm page per selected drawer, including hidden selections and unsaved edits. Print at Actual size (100%).</p>
-  <main>
-    <section class="inventory" aria-label="Editable drawer list">
-      <div class="table-scroll">
-        <table>
-          <colgroup><col class="selection-column"><col class="number-column"><col class="position-column"><col class="title-column"><col class="description-column"><col class="tags-column"><col></colgroup>
-          <thead><tr><th scope="col"><input id="select-visible" type="checkbox" aria-label="Select visible drawers" disabled></th><th scope="col">Drawer</th><th scope="col">Position</th><th scope="col">Title</th><th scope="col">Description</th><th scope="col">Tags</th><th scope="col">Remark</th></tr></thead>
-          <tbody id="drawers"></tbody>
-        </table>
+      <div class="result-summary">
+        <label class="select-all"><input id="select-visible" type="checkbox" disabled> All visible</label>
+        <span id="count"></span>
+        <span id="selection-count" aria-live="polite">0 selected</span>
+        <span id="printer-presence" role="alert" aria-live="assertive">Checking USB printer...</span>
       </div>
-      <p id="empty" hidden>No matching drawers.</p>
+      <div class="messages" aria-label="Application status">
+        <p id="status" role="status" aria-live="polite">Loading inventory...</p>
+        <p id="printer-status" role="status" aria-live="polite">Print connects automatically. Previously authorized USB ports are reused.</p>
+        <p id="label-status" role="status" hidden></p>
+        <p id="keyboard-status" role="status" hidden></p>
+        <p id="fullscreen-status" role="status" hidden></p>
+      </div>
+      <section id="results" class="results" aria-label="Drawer results">
+        <div id="drawers" role="list" aria-label="Drawers"></div>
+        <p id="empty" hidden>No matching drawers.</p>
+      </section>
+      <section id="editor" class="editor" aria-labelledby="editor-heading" hidden>
+        <div class="editor-toolbar">
+          <h2 id="editor-heading">Edit drawer</h2>
+          <button id="editor-save" type="button" class="primary" disabled>Save now</button>
+          <button id="done-editing" type="button">Done</button>
+        </div>
+        <div id="editor-fields" class="editor-fields"></div>
+      </section>
     </section>
-    <aside aria-label="Selected drawer photo">
-      <div class="photo-panel">
-        <p class="eyebrow">Selected drawer</p>
-        <h2 id="selected">Select a drawer</h2>
-        <p id="source-label"></p>
-        <a id="photo-link" target="_blank" rel="noopener" hidden>
-          <img id="photo" alt="" hidden>
-        </a>
-        <p id="photo-message">The source photo will appear here.</p>
-        <p id="photo-name" class="hint"></p>
-        <p class="hint">Photos contain several drawers. Numbering runs left to right, then upward toward lower numbers. Click the photo to open it at full display size.</p>
-      </div>
+    <aside class="photo-panel" aria-label="Selected drawer photo">
+      <h2 id="selected">Select a drawer</h2>
+      <button id="new-photo" type="button" disabled>New image of this drawer</button>
+      <input id="photo-file" class="sr-only" type="file" accept="image/png,image/jpeg" tabindex="-1">
+      <p id="photo-status" role="status" aria-live="polite" hidden></p>
+      <a id="photo-link" target="_blank" rel="noopener" hidden>
+        <img id="photo" alt="" hidden>
+      </a>
+      <p id="photo-message">The source photo will appear here.</p>
+      <p id="source-label"></p>
+      <p id="photo-name" class="hint"></p>
     </aside>
   </main>
+  <section id="keyboard" class="keyboard" aria-label="Belgian AZERTY on-screen keyboard"></section>
 </body>
 </html>

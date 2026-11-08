@@ -1,5 +1,6 @@
 import { createRemoteJWKSet, jwtVerify, errors } from 'jose';
-import { applyPatch, validateInventory, validatePatch, InventoryError } from './lib/inventory-schema.mjs';
+import { applyPatch, applyPhoto, unusedPhoto, drawerPhotoPattern, validateInventory, validatePatch, InventoryError } from './lib/inventory-schema.mjs';
+import { validatePhotoUpload, maximumPhotoBodyBytes } from './lib/photo-upload.mjs';
 
 const maximumBodySize = 512 * 1024;
 
@@ -24,7 +25,7 @@ function encodeContent(text) {
   return btoa(binary);
 }
 
-async function readBody(request) {
+async function readBody(request, maximumSize = maximumBodySize) {
   if (request.headers.get('Content-Type')?.split(';')[0].trim() !== 'application/json') {
     throw new InventoryError(415, 'Content-Type must be application/json.');
   }
@@ -37,7 +38,7 @@ async function readBody(request) {
       const { done, value } = await reader.read();
       if (done) break;
       size += value.length;
-      if (size > maximumBodySize) {
+      if (size > maximumSize) {
         await reader.cancel();
         throw new InventoryError(413, 'Request is too large.');
       }
@@ -122,7 +123,7 @@ export function createWorker({ fetchGitHub = fetch, signingKeys } = {}) {
     } catch (error) {
       const failureType = error instanceof Error ? error.name : 'UnknownError';
       console.error('GitHub inventory request could not be completed:', failureType);
-      const message = options.method === 'PUT'
+      const message = options.method === 'PUT' || options.method === 'DELETE'
         ? 'GitHub could not be reached during saving. A timed-out save may have completed; export your draft and reload before retrying.'
         : 'GitHub could not be reached while loading the inventory. No save was attempted; retry Reload or check the Worker logs.';
       throw new InventoryError(502, message);
@@ -151,11 +152,36 @@ export function createWorker({ fetchGitHub = fetch, signingKeys } = {}) {
           !/^[a-f0-9]{40}$/.test(data.sha || '')) {
         throw new Error('Unexpected GitHub content response.');
       }
+
       return { drawers: validateInventory(JSON.parse(decodeContent(data.content))), sha: data.sha };
     } catch {
       console.error('GitHub returned invalid inventory content.');
       throw new InventoryError(502, 'GitHub inventory is invalid. It has not been replaced or overwritten.');
     }
+  }
+
+  async function removeUnusedPhoto(env, config, photo) {
+    const current = await readInventory(env, config);
+    if (!unusedPhoto(current.drawers, photo)) return;
+    const endpoint = config.endpoint.replace(/contents\/drawers\.json$/, `contents/html/${photo}`);
+    const response = await githubRequest(`${endpoint}?ref=${encodeURIComponent(env.GITHUB_BRANCH)}`, { headers: config.headers });
+    if (response.status === 404) return;
+    if (!response.ok) throw githubError(response);
+    const data = await response.json();
+    if (data.type !== 'file' || !/^[a-f0-9]{40}$/.test(data.sha || '')) {
+      throw new InventoryError(502, 'GitHub did not provide the old image SHA for cleanup.');
+    }
+    // Photo uploads cannot restore an old path; recheck references before deleting.
+    const latest = await readInventory(env, config);
+    if (!unusedPhoto(latest.drawers, photo)) return;
+    const deleted = await githubRequest(endpoint, {
+      method: 'DELETE', headers: { ...config.headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Remove unused drawer image\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>',
+        branch: env.GITHUB_BRANCH, sha: data.sha
+      })
+    });
+    if (!deleted.ok && deleted.status !== 404) throw githubError(deleted);
   }
 
   return {
@@ -165,25 +191,64 @@ export function createWorker({ fetchGitHub = fetch, signingKeys } = {}) {
       try {
         await authenticate(request, env);
         const config = githubConfig(env);
+        const imageMatch = /^\/api\/photos\/([^/]+)$/.exec(url.pathname);
+        if (request.method === 'GET' && imageMatch && drawerPhotoPattern.test(`images/${imageMatch[1]}`)) {
+          const endpoint = config.endpoint.replace(/contents\/drawers\.json$/, `contents/html/images/${imageMatch[1]}`);
+          const response = await githubRequest(`${endpoint}?ref=${encodeURIComponent(env.GITHUB_BRANCH)}`, { headers: config.headers });
+          if (response.status === 404) throw new InventoryError(404, 'Drawer image not found.');
+          if (!response.ok) throw githubError(response);
+          const data = await response.json();
+          if (data.type !== 'file' || data.encoding !== 'base64' || typeof data.content !== 'string') {
+            throw new InventoryError(502, 'GitHub returned an invalid drawer image.');
+          }
+          const type = imageMatch[1].endsWith('.png') ? 'image/png' : 'image/jpeg';
+          const image = validatePhotoUpload({ basePhoto: null, type, content: data.content.replace(/\s/g, '') });
+          return new Response(image.bytes, { headers: {
+            'Content-Type': type, 'Cache-Control': 'private, no-store', 'X-Content-Type-Options': 'nosniff'
+          } });
+        }
         if (request.method === 'GET' && url.pathname === '/api/drawers') {
           const result = await readInventory(env, config);
           return json({ drawers: result.drawers, readOnly: false, revision: result.sha });
         }
         const match = /^\/api\/drawers\/(\d{3})$/.exec(url.pathname);
-        if (request.method === 'PATCH' && match) {
+        const photoMatch = /^\/api\/drawers\/(\d{3})\/photo$/.exec(url.pathname);
+        if ((request.method === 'PATCH' && match) || (request.method === 'POST' && photoMatch)) {
           if (request.headers.get('Origin') !== url.origin || request.headers.get('Sec-Fetch-Site') === 'cross-site') {
             throw new InventoryError(403, 'Only same-origin edits are allowed.');
           }
-          const payload = await readBody(request);
-          const fields = validatePatch(payload);
+          const number = (photoMatch || match)[1];
+          const payload = await readBody(request, photoMatch ? maximumPhotoBodyBytes : maximumBodySize);
+          const fields = photoMatch ? null : validatePatch(payload);
+          let photo;
+          if (photoMatch) {
+            const image = validatePhotoUpload(payload);
+            photo = `images/drawer_${number}_${crypto.randomUUID().replaceAll('-', '')}.${image.extension}`;
+            const latest = await readInventory(env, config);
+            applyPhoto(latest.drawers, number, payload.basePhoto, photo);
+            const endpoint = config.endpoint.replace(/contents\/drawers\.json$/, `contents/html/${photo}`);
+            const response = await githubRequest(endpoint, {
+              method: 'PUT', headers: { ...config.headers, 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                message: `Add photo for drawer ${number}\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`,
+                branch: env.GITHUB_BRANCH, content: payload.content
+              })
+            });
+            if (!response.ok) throw githubError(response);
+            const saved = await response.json();
+            if (!/^[a-f0-9]{40}$/.test(saved.content?.sha || '')) {
+              throw new InventoryError(502, 'GitHub did not confirm image storage. Reload before retrying.');
+            }
+          }
           for (let attempt = 0; attempt < 3; attempt++) {
             const latest = await readInventory(env, config);
-            const drawer = applyPatch(latest.drawers, match[1], payload, fields);
+            const drawer = photoMatch ? applyPhoto(latest.drawers, number, payload.basePhoto, photo) :
+              applyPatch(latest.drawers, number, payload, fields);
             const response = await githubRequest(config.endpoint, {
               method: 'PUT',
               headers: { ...config.headers, 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                message: `Update drawer ${match[1]}\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`,
+                message: `Update drawer ${number}${photoMatch ? ' photo' : ''}\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`,
                 branch: env.GITHUB_BRANCH,
                 sha: latest.sha,
                 content: encodeContent(`${JSON.stringify(latest.drawers, null, 2)}\n`)
@@ -197,7 +262,16 @@ export function createWorker({ fetchGitHub = fetch, signingKeys } = {}) {
               console.error('GitHub save confirmation did not contain a valid content SHA.');
               throw new InventoryError(502, 'GitHub returned an invalid save confirmation. Export your draft and reload to check whether the save completed.');
             }
-            return json({ drawer, revision: saved.content.sha });
+            const result = { drawer, revision: saved.content.sha };
+            if (photoMatch && unusedPhoto(latest.drawers, payload.basePhoto)) {
+              try {
+                await removeUnusedPhoto(env, config, payload.basePhoto);
+              } catch (error) {
+                console.error('Saved drawer photo, but old image cleanup failed:', error.message);
+                result.warning = 'The new image is saved, but the unused old image could not be deleted. Check the Worker logs.';
+              }
+            }
+            return json(result);
           }
           throw new InventoryError(409, 'Inventory changed repeatedly during saving. Your draft is retained; retry Save now or export and reload.');
         }

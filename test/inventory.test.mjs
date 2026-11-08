@@ -8,6 +8,7 @@ import { request } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { createApp } from '../server.mjs';
 import { createInventoryStore, validateInventory } from '../lib/inventory.mjs';
+import { drawerPhotoPattern } from '../lib/inventory-schema.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const inventoryPath = join(root, 'drawers.json');
@@ -47,15 +48,19 @@ test('inventory contains every drawer 001-210 in its exact five-column position'
   assert.equal(drawers[105].position, 'L22/1');
   assert.equal(drawers[209].position, 'L42/5');
   for (const drawer of drawers.slice(0, 35)) {
-    assert.equal(drawer.photo, null);
+    assert.ok(drawer.photo === null || drawerPhotoPattern.test(drawer.photo));
   }
 });
 
-test('all twelve photos are linked, originals retained, with no missing display assets', async () => {
+test('originals are retained and current photo references have display assets', async () => {
   const drawers = JSON.parse(await readFile(inventoryPath, 'utf8'));
   const photos = (await readdir(join(root, 'photos'))).filter(name => name.endsWith('.jpg')).sort();
   const linked = [...new Set(drawers.map(drawer => drawer.photo).filter(Boolean))].sort();
-  assert.deepEqual(linked, photos.map(name => `images/${name}`));
+  assert.equal(photos.length, 12);
+  for (const path of linked) {
+    assert.ok(photos.some(name => path === `images/${name}`) || drawerPhotoPattern.test(path));
+    await access(join(htmlPath, path));
+  }
   for (const drawer of drawers.slice(35)) {
     assert.ok(drawer.photo);
     await access(join(htmlPath, drawer.photo));
@@ -68,11 +73,14 @@ test('approved bottom row, photo anchors and visible missing drawers are preserv
   assert.equal(drawers[100].description, 'M3 Afstandbussen');
   assert.equal(drawers[100].remark, 'Afstandsbussen verscheidene maten');
   assert.deepEqual(drawers[100].searchTag, ['afstandsbus', 'M3', 'afstand']);
-  assert.deepEqual(drawers.slice(100, 105).map(d => d.photo), Array(5).fill('images/MVIMG_20261028_141136.jpg'));
+  for (const drawer of drawers.slice(100, 105)) {
+    assert.ok(drawer.photo === 'images/MVIMG_20261028_141136.jpg' || drawerPhotoPattern.test(drawer.photo));
+  }
   assert.equal(drawers[90].sourceLabel, 'LED DISPLAY');
-  assert.equal(drawers[35].photo, 'images/MVIMG_20261028_141215.jpg');
-  assert.equal(drawers[209].photo, 'images/MVIMG_20261028_141233.jpg');
-  assert.equal(drawers[105].photo, 'images/MVIMG_20261028_141322.jpg');
+  for (const [index, original] of [[35, 'images/MVIMG_20261028_141215.jpg'],
+    [209, 'images/MVIMG_20261028_141233.jpg'], [105, 'images/MVIMG_20261028_141322.jpg']]) {
+    assert.ok(drawers[index].photo === original || drawerPhotoPattern.test(drawers[index].photo));
+  }
   for (const n of [48, 108, 130]) {
     assert.equal(drawers[n - 1].title, 'NON EXIST');
     assert.match(drawers[n - 1].remark, /ontbreekt/);
@@ -193,6 +201,9 @@ test('static files and photos are served but repository files are not exposed', 
     ['/', 'text/html'], ['/app.js', 'text/javascript'], ['/label.js', 'text/javascript'],
     ['/selection.js', 'text/javascript'], ['/styles.css', 'text/css'],
     ['/search.js', 'text/javascript'],
+    ['/keyboard.js', 'text/javascript'],
+    ['/printer-presence.js', 'text/javascript'],
+    ['/photo-upload.js', 'text/javascript'], ['/images/dummy.jpg', 'image/jpeg'],
     ['/label-pdf.bundle.js', 'text/javascript'],
     ['/fonts/NotoSansMono-Regular.ttf', 'font/ttf'], ['/fonts/NotoSansMono-Bold.ttf', 'font/ttf'],
     ['/images/MVIMG_20261028_141136.jpg', 'image/jpeg']

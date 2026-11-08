@@ -37,12 +37,33 @@ function fixture() {
   let version = 1;
   const sha = () => version.toString(16).padStart(40, '0');
   const calls = [];
+  const photos = new Map();
   let beforePut;
   const fetchGitHub = async (url, options) => {
-    assert.ok(url.startsWith('https://api.github.com/repos/test-owner/test-repository/contents/drawers.json'));
+    assert.ok(url.startsWith('https://api.github.com/repos/test-owner/test-repository/contents/'));
     assert.equal(options.headers.Authorization, `Bearer ${env.GITHUB_TOKEN}`);
     assert.equal(options.redirect, 'manual');
     calls.push({ url, options });
+    if (new URL(url).pathname.includes('/contents/html/images/')) {
+      const path = new URL(url).pathname;
+      if (options.method === 'PUT') {
+        const payload = JSON.parse(options.body);
+        assert.equal(payload.branch, 'main');
+        assert.match(payload.message, /Co-authored-by: Copilot/);
+        photos.set(path, payload.content);
+        return Response.json({ content: { sha: 'f'.repeat(40) } });
+      }
+      if (options.method === 'DELETE') {
+        const payload = JSON.parse(options.body);
+        assert.equal(payload.sha, 'f'.repeat(40));
+        assert.equal(payload.branch, 'main');
+        assert.ok(!remote.some(drawer => `/repos/test-owner/test-repository/contents/html/${drawer.photo}` === path));
+        photos.delete(path);
+        return Response.json({ commit: { sha: 'e'.repeat(40) } });
+      }
+      if (!photos.has(path)) return new Response(null, { status: 404 });
+      return Response.json({ type: 'file', encoding: 'base64', sha: 'f'.repeat(40), content: photos.get(path) });
+    }
     if (options.method === 'PUT') {
       if (beforePut) {
         const action = beforePut;
@@ -50,6 +71,7 @@ function fixture() {
         action(remote);
         version++;
       }
+
       const payload = JSON.parse(options.body);
       if (payload.sha !== sha()) return Response.json({ message: 'sha conflict' }, { status: 409 });
       assert.equal(payload.branch, 'main');
@@ -66,7 +88,7 @@ function fixture() {
   };
   const worker = createWorker({ fetchGitHub, signingKeys });
   return {
-    worker, calls,
+    worker, calls, photos, fetchGitHub,
     remote: () => remote,
     race(action) { beforePut = action; },
     get(assertion = validToken, environment = env) {
@@ -83,6 +105,92 @@ function fixture() {
     }
   };
 }
+
+const pngContent = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jZ1kAAAAASUVORK5CYII=';
+
+test('hosted grouped image remains until its last drawer is replaced', async () => {
+  const f = fixture();
+  const old = 'images/MVIMG_20000101_010101.jpg';
+  f.remote()[0].photo = old;
+  f.remote()[1].photo = old;
+  const path = `/repos/test-owner/test-repository/contents/html/${old}`;
+  f.photos.set(path, pngContent);
+  for (const number of ['001', '002']) {
+    const response = await f.worker.fetch(new Request(`${origin}/api/drawers/${number}/photo`, {
+      method: 'POST', headers: { 'Cf-Access-Jwt-Assertion': validToken, Origin: origin, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ basePhoto: old, type: 'image/png', content: pngContent })
+    }), env);
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).warning, undefined);
+    assert.equal(f.photos.has(path), number === '001');
+  }
+  assert.equal(f.calls.filter(call => call.options.method === 'DELETE').length, 1);
+});
+
+test('hosted cleanup failure reports a warning without losing the saved photo', async () => {
+  const f = fixture();
+  const old = 'images/MVIMG_20000101_010101.jpg';
+  f.remote()[0].photo = old;
+  const worker = createWorker({
+    signingKeys,
+    fetchGitHub: async (url, options) => {
+      if (new URL(url).pathname.endsWith('/html/' + old)) return new Response(null, { status: 500 });
+      return f.fetchGitHub(url, options);
+    }
+  });
+  const response = await worker.fetch(new Request(`${origin}/api/drawers/001/photo`, {
+    method: 'POST', headers: { 'Cf-Access-Jwt-Assertion': validToken, Origin: origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ basePhoto: old, type: 'image/png', content: pngContent })
+  }), env);
+  assert.equal(response.status, 200);
+  const result = await response.json();
+  assert.match(result.warning, /new image is saved/);
+  assert.equal(f.remote()[0].photo, result.drawer.photo);
+});
+
+test('hosted drawer photo uploads change only that drawer and serve immediately without a deployment', async () => {
+  const f = fixture();
+  const before = structuredClone(f.remote());
+  const response = await f.worker.fetch(new Request(`${origin}/api/drawers/101/photo`, {
+    method: 'POST', headers: { 'Cf-Access-Jwt-Assertion': validToken, Origin: origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ basePhoto: before[100].photo, type: 'image/png', content: pngContent })
+  }), env);
+  assert.equal(response.status, 200);
+  const result = await response.json();
+  assert.match(result.drawer.photo, /^images\/drawer_101_[a-f0-9]{32}\.png$/);
+  for (let index = 0; index < before.length; index++) {
+    if (index !== 100) assert.deepEqual(f.remote()[index], before[index]);
+  }
+  assert.equal(f.remote()[100].title, before[100].title);
+  const imageResponse = await f.worker.fetch(new Request(`${origin}/api/photos/${result.drawer.photo.slice(7)}`, {
+    headers: { 'Cf-Access-Jwt-Assertion': validToken }
+  }), env);
+  assert.equal(imageResponse.status, 200);
+  assert.equal(imageResponse.headers.get('Content-Type'), 'image/png');
+  assert.equal(Buffer.from(await imageResponse.arrayBuffer()).toString('base64'), pngContent);
+});
+
+test('hosted image upload rejects foreign origins, malformed images, stale base and unauthenticated requests', async () => {
+  for (const variant of [
+    { origin: 'https://foreign.example', status: 403 },
+    { assertion: '', status: 401 },
+    { content: 'PHNjcmlwdD4=', status: 400 },
+    { basePhoto: null, status: 409 }
+  ]) {
+    const f = fixture();
+    const response = await f.worker.fetch(new Request(`${origin}/api/drawers/101/photo`, {
+      method: 'POST', headers: {
+        'Cf-Access-Jwt-Assertion': variant.assertion ?? validToken, Origin: variant.origin || origin, 'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        basePhoto: Object.hasOwn(variant, 'basePhoto') ? variant.basePhoto : f.remote()[100].photo,
+        type: 'image/png', content: variant.content || pngContent
+      })
+    }), env);
+    assert.equal(response.status, variant.status);
+    assert.equal(f.calls.filter(call => call.options.method === 'PUT').length, 0);
+  }
+});
 
 test('verified Access login reads current GitHub data instead of a deployed snapshot', async () => {
   const f = fixture();
