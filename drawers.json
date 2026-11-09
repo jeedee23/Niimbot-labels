@@ -1011,11 +1011,11 @@
   {
     "position": "L17/2",
     "number": "082",
-    "title": "IMBUS SET",
-    "description": "INBUS",
+    "title": "IMBUS SET SCHROEF",
+    "description": "INBUS SETSCHROEVEN M3 M4 M5 M6 M8",
     "remark": "Maat niet betrouwbaar leesbaar",
     "searchTag": [
-      "INBUS"
+      "INBUS SET SCREW"
     ],
     "sourceLabel": "INBUS",
     "photo": "images/MVIMG_20261028_141201.jpg"
