@@ -1061,12 +1061,14 @@
   {
     "position": "L18/1",
     "number": "086",
-    "title": "M3 RONDEL",
-    "description": "M3 RONDEL",
+    "title": "M3 grower moeren inox en staal",
+    "description": "M3 RONDEL MOER GROWER",
     "remark": "Aanvullende tekst MOER NYLON / MOER GALVA lijkt aanwezig; te controleren",
     "searchTag": [
       "M3",
-      "RONDEL"
+      "RONDEL",
+      "GROWER",
+      "MOER"
     ],
     "sourceLabel": "M3 RONDEL",
     "photo": "images/MVIMG_20261028_141152.jpg"
