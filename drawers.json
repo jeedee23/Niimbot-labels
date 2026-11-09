@@ -996,11 +996,14 @@
   {
     "position": "L17/1",
     "number": "081",
-    "title": "ONBEKEND",
-    "description": "Geen leesbaar opschrift; inhoud te controleren",
+    "title": "HULS EN PIN STEKKERS",
+    "description": "STEKKERS M EN V VOOR 12 24 ETC",
     "remark": "Geen leesbaar label; inhoud te controleren",
     "searchTag": [
-      "te controleren"
+      "HULS",
+      "PIN",
+      "12V",
+      "24V"
     ],
     "sourceLabel": "",
     "photo": "images/MVIMG_20261028_141201.jpg"
