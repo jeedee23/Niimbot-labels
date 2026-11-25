@@ -1051,12 +1051,13 @@
   {
     "position": "L17/5",
     "number": "085",
-    "title": "M3 VERLENGMOER",
-    "description": "M3 BOUT",
+    "title": "M3 VERLENGMOEREN EN BOUTEN",
+    "description": "M3 VERLENG",
     "remark": "Onderste opschrift niet betrouwbaar leesbaar",
     "searchTag": [
       "M3",
-      "BOUT"
+      "BOUT",
+      "verleng"
     ],
     "sourceLabel": "M3 BOUT",
     "photo": "images/MVIMG_20261028_141201.jpg"
