@@ -943,12 +943,13 @@
   {
     "position": "L16/2",
     "number": "077",
-    "title": "CINCH ANT",
-    "description": "Cinch- en antenne-aansluitingen",
-    "remark": "Opschrift: CINCH ANT",
+    "title": "LUSTERKLEMMEN TOT 2.5 mm²",
+    "description": "LUSTERKLEMMEN",
+    "remark": "suiker",
     "searchTag": [
-      "CINCH",
-      "ANT"
+      "SUIKER",
+      " luster",
+      " klem"
     ],
     "sourceLabel": "CINCH ANT",
     "photo": "images/MVIMG_20261028_141201.jpg"
