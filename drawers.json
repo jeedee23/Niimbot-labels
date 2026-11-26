@@ -804,12 +804,13 @@
   {
     "position": "L14/1",
     "number": "066",
-    "title": "VENTILATOR 12-24 DC",
-    "description": "Ventilatoren 12-24 V DC",
-    "remark": "Opschrift: VENTILATOR 12-24 DC",
+    "title": "VENTILATOR 5 DC MINI",
+    "description": "Ventilatoren 5V DC",
+    "remark": "",
     "searchTag": [
+      "MINI",
       "VENTILATOR",
-      "12-24",
+      "5",
       "DC"
     ],
     "sourceLabel": "VENTILATOR 12-24 DC",
