@@ -37,6 +37,21 @@ export function keyValue(key, { shift = false, caps = false } = {}) {
   return shift !== caps ? key.value.toLocaleUpperCase('fr-BE') : key.value;
 }
 
+const numpadCharacters = {
+  Numpad0: '0', Numpad1: '1', Numpad2: '2', Numpad3: '3', Numpad4: '4',
+  Numpad5: '5', Numpad6: '6', Numpad7: '7', Numpad8: '8', Numpad9: '9',
+  NumpadDecimal: '.', NumpadSubtract: '-', NumpadAdd: '+', NumpadMultiply: '*', NumpadDivide: '/'
+};
+
+// With Num Lock off, keypad keys arrive as navigation keys (End, ArrowDown, Delete, ...).
+export function numpadText({ code, key, ctrlKey = false, altKey = false, metaKey = false }) {
+  if (ctrlKey || altKey || metaKey || key?.length === 1) return null;
+  return numpadCharacters[code] ?? null;
+}
+
+const isTextField = element => (element instanceof HTMLInputElement && element.type === 'search') ||
+  element instanceof HTMLTextAreaElement;
+
 function boundaries(value) {
   return [...new Intl.Segmenter('fr-BE', { granularity: 'grapheme' }).segment(value)].map(part => part.index).concat(value.length);
 }
@@ -84,8 +99,7 @@ export function createKeyboard(container, { onSearch, onError }) {
   }
 
   document.addEventListener('focusin', event => {
-    if ((event.target instanceof HTMLInputElement && event.target.type === 'search') ||
-        event.target instanceof HTMLTextAreaElement) {
+    if (isTextField(event.target)) {
       target = event.target;
       selection = { start: target.selectionStart, end: target.selectionEnd };
     }
@@ -93,6 +107,35 @@ export function createKeyboard(container, { onSearch, onError }) {
   document.addEventListener('selectionchange', remember);
   document.addEventListener('keyup', remember);
   document.addEventListener('pointerup', remember);
+  document.addEventListener('keydown', event => {
+    const text = numpadText(event);
+    if (text === null) return;
+    const active = document.activeElement;
+    let input = isTextField(active) ? active : null;
+    if (!input && target?.type === 'search' && target.isConnected && !target.disabled) {
+      focusTarget(target);
+      input = target;
+    }
+    if (!input || input.disabled || input.readOnly) return;
+    event.preventDefault();
+    insert(input, { start: input.selectionStart, end: input.selectionEnd }, text);
+  });
+
+  function insert(input, range, value) {
+    try {
+      const result = applyKey(input.value, range.start, range.end, value, input.maxLength);
+      input.value = result.value;
+      input.focus({ preventScroll: true });
+      input.setSelectionRange(result.cursor, result.cursor);
+      target = input;
+      selection = { start: result.cursor, end: result.cursor };
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    } catch (error) {
+      onError(error.message);
+      return false;
+    }
+  }
 
   function press(key) {
     if (key.action === 'shift') { shift = !shift; draw(); return; }
@@ -110,17 +153,7 @@ export function createKeyboard(container, { onSearch, onError }) {
     }
     const value = key.action === 'backspace' ? 'Backspace' : key.action === 'enter' ? '\n' :
       key.action === 'space' ? ' ' : keyValue(key, { shift, caps });
-    try {
-      const result = applyKey(target.value, selection.start, selection.end, value, target.maxLength);
-      target.value = result.value;
-      target.focus({ preventScroll: true });
-      target.setSelectionRange(result.cursor, result.cursor);
-      selection = { start: result.cursor, end: result.cursor };
-      target.dispatchEvent(new Event('input', { bubbles: true }));
-      if (shift && !key.action && !key.number) { shift = false; draw(); }
-    } catch (error) {
-      onError(error.message);
-    }
+    if (insert(target, selection, value) && shift && !key.action && !key.number) { shift = false; draw(); }
   }
 
   function draw() {

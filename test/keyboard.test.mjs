@@ -1,7 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { applyKey, keyboardRows, keyValue } from '../html/keyboard.js';
+import { applyKey, keyboardRows, keyValue, numpadText } from '../html/keyboard.js';
+
+test('physical numpad types characters even when Num Lock sends navigation keys', () => {
+  assert.equal(numpadText({ code: 'Numpad1', key: 'End' }), '1');
+  assert.equal(numpadText({ code: 'Numpad0', key: 'Insert' }), '0');
+  assert.equal(numpadText({ code: 'NumpadDecimal', key: 'Delete' }), '.');
+  assert.equal(numpadText({ code: 'NumpadSubtract', key: 'Unidentified' }), '-');
+  assert.equal(numpadText({ code: 'Numpad5', key: '5' }), null, 'browser already inserts Num Lock-on digits');
+  assert.equal(numpadText({ code: 'NumpadEnter', key: 'Enter' }), null);
+  assert.equal(numpadText({ code: 'Numpad1', key: 'End', ctrlKey: true }), null);
+  assert.equal(numpadText({ code: 'End', key: 'End' }), null);
+});
 
 test('three keyboard rows occupy 20 tracks, with the approved four-column numpad', () => {
   assert.equal(keyboardRows.length, 3);
