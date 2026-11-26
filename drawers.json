@@ -1134,12 +1134,13 @@
   {
     "position": "L19/1",
     "number": "091",
-    "title": "LED DISPLAY",
-    "description": "LED-displays",
-    "remark": "Opschrift: LED DISPLAY",
+    "title": "STEEK ZEKERING REST",
+    "description": "STEEK ZEKERING",
+    "remark": "",
     "searchTag": [
-      "LED",
-      "DISPLAY"
+      "STEEK",
+      "zekering",
+      " plong"
     ],
     "sourceLabel": "LED DISPLAY",
     "photo": "images/MVIMG_20261028_141136.jpg"
