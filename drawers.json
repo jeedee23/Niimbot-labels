@@ -819,11 +819,14 @@
   {
     "position": "L14/2",
     "number": "067",
-    "title": "KNIP",
-    "description": "KNIP",
+    "title": "TUIMEL KNOP 220V INBOUW",
+    "description": "TUIMEL KNOP 220V INBOUW",
     "remark": "Betekenis van KNIP te controleren",
     "searchTag": [
-      "KNIP"
+      "TUIMEL",
+      "KNOP",
+      "220V",
+      "INBOUW"
     ],
     "sourceLabel": "KNIP",
     "photo": "images/MVIMG_20261028_141209.jpg"
