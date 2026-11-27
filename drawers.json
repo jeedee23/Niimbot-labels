@@ -856,12 +856,15 @@
   {
     "position": "L14/5",
     "number": "070",
-    "title": "LAGERS GLIJBUS",
-    "description": "Glijbuslagers",
-    "remark": "Opschrift: LAGERS GLIJBUS",
+    "title": "KOELVINNEN",
+    "description": "KOELVINNEN",
+    "remark": "",
     "searchTag": [
-      "LAGERS",
-      "GLIJBUS"
+      "KOELVINNEN",
+      "koel",
+      "vinnen",
+      "alu",
+      "aluminium"
     ],
     "sourceLabel": "LAGERS GLIJBUS",
     "photo": "images/MVIMG_20261028_141209.jpg"
