@@ -906,12 +906,15 @@
   {
     "position": "L15/4",
     "number": "074",
-    "title": "LAGERS 12-20 ",
-    "description": "M5 GRAB",
+    "title": "LAGERS 12-20 8-20 8-22",
+    "description": "LAGERS",
     "remark": "Betekenis van GRAB te controleren",
     "searchTag": [
-      "M5",
-      "GRAB"
+      "LAGERS",
+      "8",
+      "20",
+      "22",
+      "12"
     ],
     "sourceLabel": "M5 GRAB",
     "photo": "images/MVIMG_20261028_141201.jpg"
